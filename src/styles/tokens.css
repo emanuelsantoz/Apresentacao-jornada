@@ -1,0 +1,56 @@
+:root {
+  /* Marca Barracred */
+  --c-white: #ffffff;
+  --c-green-900: #104726;
+  --c-green-950: #0a2416; /* derivado do green-900 para fundos escuros profundos */
+  --c-green-700: #1e6d2f;
+  --c-green-600: #28972e;
+  --c-lime: #afbf30;
+  --c-teal: #23775b;
+  --c-blue: #39a3be;
+  --c-gold: #dca349;
+  --c-yellow: #f2eb80;
+
+  /* Neutros da apresentação */
+  --c-paper: #f4f8f3;
+  --c-paper-edge: #dcecdc;
+  --c-ink: #0f2a1a;
+  --c-ink-soft: #46604f;
+  --c-line: rgba(16, 71, 38, 0.14);
+
+  /* Semânticos */
+  --c-success: #28972e;
+  --c-success-tint: #e3f3e4;
+  --c-alert: #e08a1e;
+  --c-alert-tint: #fdf0dd;
+  --c-danger: #c8423b;
+  --c-danger-tint: #fbe5e3;
+  --c-info: #39a3be;
+  --c-info-tint: #e1f2f6;
+
+  /* BWS (somente mockups) */
+  --bws-chrome: #0b2e1f;
+  --bws-primary: #0b5d3b;
+  --bws-action: #12864f;
+  --bws-canvas: #f5f7f6;
+  --bws-text: #1f2937;
+  --bws-muted: #6b7280;
+  --bws-border: #e5e7eb;
+  --bws-selection: #e8f5e9;
+
+  /* Tipografia */
+  --font-brand: 'Qanelas', 'Plus Jakarta Sans', Arial, sans-serif;
+  --fs-display: 128px;
+  --fs-title: 72px;
+  --fs-subtitle: 40px;
+  --fs-body: 30px;
+  --fs-label: 24px;
+  --fs-caption: 21px;
+
+  /* Forma */
+  --radius-lg: 36px;
+  --radius-md: 24px;
+  --radius-sm: 14px;
+  --shadow-card: 0 18px 50px -20px rgba(10, 36, 22, 0.35);
+  --shadow-device: 0 50px 90px -30px rgba(5, 20, 12, 0.6);
+}

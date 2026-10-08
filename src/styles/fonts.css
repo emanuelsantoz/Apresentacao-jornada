@@ -1,0 +1,9 @@
+/*
+ * Qanelas (fonte oficial). Coloque os arquivos em public/fonts/ com estes nomes
+ * e eles serão usados automaticamente. Enquanto não existirem, a pilha cai para
+ * Plus Jakarta Sans (empacotada localmente via @fontsource) e depois Arial.
+ */
+@font-face { font-family: 'Qanelas'; font-weight: 400; font-display: swap; src: local('Qanelas Regular'), local('Qanelas-Regular'), url('/fonts/Qanelas-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Qanelas'; font-weight: 500; font-display: swap; src: local('Qanelas Medium'), local('Qanelas-Medium'), url('/fonts/Qanelas-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Qanelas'; font-weight: 600; font-display: swap; src: local('Qanelas SemiBold'), local('Qanelas-SemiBold'), url('/fonts/Qanelas-SemiBold.woff2') format('woff2'); }
+@font-face { font-family: 'Qanelas'; font-weight: 700; font-display: swap; src: local('Qanelas Bold'), local('Qanelas-Bold'), url('/fonts/Qanelas-Bold.woff2') format('woff2'); }

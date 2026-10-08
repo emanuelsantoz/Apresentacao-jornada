@@ -1,0 +1,27 @@
+@import '@fontsource/plus-jakarta-sans/latin-400.css';
+@import '@fontsource/plus-jakarta-sans/latin-500.css';
+@import '@fontsource/plus-jakarta-sans/latin-600.css';
+@import '@fontsource/plus-jakarta-sans/latin-700.css';
+@import '@fontsource/plus-jakarta-sans/latin-ext-400.css';
+@import '@fontsource/plus-jakarta-sans/latin-ext-600.css';
+@import '@fontsource/plus-jakarta-sans/latin-ext-700.css';
+@import './tokens.css';
+@import './fonts.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; overflow: hidden; }
+body {
+  background: var(--c-green-950);
+  color: var(--c-ink);
+  font-family: var(--font-brand);
+  -webkit-font-smoothing: antialiased;
+}
+body.print-mode, body.print-mode #root, html.print-mode { overflow: visible; height: auto; background: #fff; }
+button { font: inherit; color: inherit; }
+.num { font-variant-numeric: tabular-nums; }
+::selection { background: var(--c-lime); color: var(--c-green-900); }
+
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  .no-print { display: none !important; }
+}
