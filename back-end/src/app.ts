@@ -124,3 +124,7 @@ const requireTokenForWrites: MiddlewareHandler = async (c, next) => {
   }
   return bearerAuth({ token })(c, next);
 };
+
+// A Vercel carrega este arquivo diretamente como função serverless. O handler
+// padrão precisa ser uma função, não a instância do Hono.
+export default createApp().fetch;
