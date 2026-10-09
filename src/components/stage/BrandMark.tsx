@@ -42,7 +42,7 @@ export function BrandMark({ dark, height = 46 }: { dark?: boolean; height?: numb
     <Wordmark dark={dark} height={height} />
   );
 
-  if (print || !editing) return <span data-no-edit style={{ display: 'inline-flex' }}>{mark}</span>;
+  if (print || !editing) return <span data-no-edit style={card}>{mark}</span>;
 
   const onDrop = (e: DragEvent) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ export function BrandMark({ dark, height = 46 }: { dark?: boolean; height?: numb
   return (
     <span
       data-no-edit
-      style={{ position: 'relative', display: 'inline-flex' }}
+      style={{ ...card, position: 'relative' }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
@@ -68,15 +68,15 @@ export function BrandMark({ dark, height = 46 }: { dark?: boolean; height?: numb
         title={`Clique para trocar a logo (${mine.label}) — PNG ou SVG`}
         style={{
           all: 'unset', cursor: 'pointer', display: 'inline-flex', padding: 8, margin: -8, borderRadius: 12,
-          outline: ring ? `2px dashed ${dark ? 'var(--c-lime)' : 'var(--c-green-600)'}` : '2px dashed transparent',
-          background: drag ? 'rgba(175,191,48,0.18)' : 'transparent', transition: 'outline-color .2s',
+          outline: ring ? '2px dashed var(--ws-action)' : '2px dashed transparent',
+          background: drag ? 'rgba(18,134,79,0.12)' : 'transparent', transition: 'outline-color .2s',
         }}
       >
         {mark}
       </button>
 
       {ring && (
-        <span className="no-print" style={{ ...tip, color: dark ? 'var(--c-green-900)' : '#fff', background: dark ? 'var(--c-lime)' : 'var(--c-green-900)' }}>
+        <span className="no-print" style={{ ...tip, color: '#fff', background: 'var(--ws-action)' }}>
           <ImageUp size={16} /> {drag ? 'Solte a imagem' : 'Trocar logo'}
           {own.source === 'upload' && (
             <button
@@ -102,6 +102,11 @@ export function BrandMark({ dark, height = 46 }: { dark?: boolean; height?: numb
     </span>
   );
 }
+
+/** Div da logo: fundo branco para a logo colorida funcionar em qualquer fundo de slide. */
+const card: CSSProperties = {
+  display: 'inline-flex', background: '#fff', padding: '10px 20px', margin: '-10px -20px', borderRadius: 14,
+};
 
 const tip: CSSProperties = {
   position: 'absolute', left: 0, top: '100%', marginTop: 12, display: 'inline-flex', alignItems: 'center', gap: 6,

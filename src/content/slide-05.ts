@@ -11,21 +11,21 @@ export const meta: SlideMeta = {
 
 export const data: TabletDuoData = {
   eyebrow: 'Como utilizar · 2 de 3',
-  title: 'A cor já diz o que fazer',
+  title: 'As cores revelam o que está acontecendo',
   screens: [
     {
       tag: 'Tela 3', name: 'Alerta', tone: 'alert', icon: AlertTriangle,
-      bullets: ['Clique na sessão em laranja.', 'Veja o diagnóstico e siga a recomendação.'],
+      bullets: ['Clique na sessão em laranja', 'Veja o diagnóstico e siga a recomendação'],
       screen: prints.jornadaAlerta,
-      callout: { icon: Stethoscope, title: 'Diagnóstico + solução', text: 'O erro explicado e o próximo passo recomendado.' },
+      callout: { icon: Stethoscope, title: 'Diagnóstico + solução', text: 'O cenário é explicado, e o próximo passo recomendado' },
       spot: { x: 30, y: 38 },
     },
     {
       tag: 'Tela 4', name: 'Sucesso', tone: 'success', icon: CheckCircle2,
-      bullets: ['Sessão em verde: tudo certo.', 'Nenhuma ação necessária.'],
+      bullets: ['Sessão em verde: tudo certo.', 'Nenhuma ação necessária'],
       screen: prints.jornadaSucesso,
-      callout: { icon: ThumbsUp, title: 'Tudo certo', text: 'Siga o atendimento normalmente.' },
-      spot: { x: 30, y: 22 },
+      callout: { icon: ThumbsUp, title: 'Tudo certo', text: 'Siga o atendimento normalmente' },
+      spot: { x: 22, y: 34 },
     },
   ],
 };

@@ -12,10 +12,10 @@ export const data: RulesData = {
   eyebrow: 'Combinado',
   title: ['Cada coisa', 'no seu lugar'],
   rules: [
-    { icon: Ticket, use: 'Sempre primeiro', name: 'Chamado', text: 'Todo pedido começa aqui.', featured: true },
-    { icon: MessageCircle, use: 'Só prioridade', name: 'Teams', text: 'Casos prioritários. O resto segue a fila.' },
-    { icon: FolderOpen, use: 'Arquivos', name: 'SharePoint', text: 'Arquivos e planilhas pesadas.' },
+    { icon: Ticket, use: 'BWS_HELP', name: 'Chamado', text: 'Toda solicitação começa aqui', featured: true },
+    { icon: MessageCircle, use: 'Comunicação', name: 'Meios', text: 'Casos prioritários. Os demais seguem o fluxo normal' },
+    { icon: FolderOpen, use: 'Arquivos', name: 'SharePoint', text: 'Arquivos e planilhas' },
   ],
-  avoid: 'Anexo pesado no chat',
-  motto: 'Cooperar para transformar vidas do nosso cooperado.',
+  avoid: '',
+  motto: 'Cooperar para transformar vidas',
 };

@@ -14,6 +14,8 @@ interface Props {
   fit?: 'cover' | 'contain';
   /** Ponto de foco do print quando fit = cover (ex.: 'top', 'center'). */
   position?: string;
+  /** Cor de fundo atrás do print (faixas livres no modo contain). */
+  bg?: string;
 }
 
 /**
@@ -21,7 +23,7 @@ interface Props {
  * passar o mouse) para substituir a tela de exemplo. Para fixar no projeto, salve o
  * arquivo como public/prints/<id>.png.
  */
-export function PrintSlot({ id, label, children, fit = 'cover', position = 'top' }: Props) {
+export function PrintSlot({ id, label, children, fit = 'cover', position = 'top', bg }: Props) {
   const { src, source, save, remove } = usePrint(id);
   const { print } = useSlideState();
   const { editing } = useEditMode();
@@ -40,7 +42,7 @@ export function PrintSlot({ id, label, children, fit = 'cover', position = 'top'
   return (
     <div
       data-print-slot={id}
-      style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
+      style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: bg }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onDragOver={(e) => { if (!canEdit) return; e.preventDefault(); setDrag(true); }}
@@ -48,7 +50,7 @@ export function PrintSlot({ id, label, children, fit = 'cover', position = 'top'
       onDrop={onDrop}
     >
       {src ? (
-        <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: fit, objectPosition: position, display: 'block', background: '#fff' }} />
+        <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: fit, objectPosition: position, display: 'block', background: bg ?? '#fff' }} />
       ) : (
         children
       )}
@@ -59,8 +61,8 @@ export function PrintSlot({ id, label, children, fit = 'cover', position = 'top'
           style={{
             position: 'absolute', inset: 0, pointerEvents: drag || hover ? 'auto' : 'none',
             display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', padding: 18, gap: 10,
-            background: drag ? 'rgba(16,71,38,0.55)' : 'transparent',
-            outline: drag ? '4px dashed var(--c-lime)' : 'none', outlineOffset: -10,
+            background: drag ? 'rgba(11,46,31,0.6)' : 'transparent',
+            outline: drag ? '4px dashed var(--ws-selection)' : 'none', outlineOffset: -10,
             opacity: drag || hover ? 1 : 0, transition: 'opacity .2s',
           }}
         >

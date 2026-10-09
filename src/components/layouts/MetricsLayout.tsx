@@ -40,12 +40,12 @@ export function MetricsLayout({ d }: { d: MetricsData }) {
         {d.kpis.map((k, i) => (
           <Reveal key={k.label} delay={0.12 + i * 0.08} from="up">
             <div style={{ ...card, padding: '18px 26px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', gap: 22 }}>
-              <span style={{ position: 'absolute', left: 0, top: 0, right: 0, height: 6, background: i === 0 ? 'var(--c-green-700)' : i === 1 ? 'var(--c-lime)' : 'var(--c-teal)' }} />
+              <span style={{ position: 'absolute', left: 0, top: 0, right: 0, height: 4, background: 'var(--ws-action)' }} />
               <IconBadge icon={k.icon} tone="dark" size={58} />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: 20, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.06em', color: 'var(--c-ink-soft)' }}>{k.label}</span>
                 <span style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
-                  <span style={{ fontSize: 58, fontWeight: 700, color: 'var(--c-green-900)', lineHeight: 1.05 }}><CountUp value={k.value} suffix={k.suffix} /></span>
+                  <span style={{ fontSize: 58, fontWeight: 700, color: 'var(--ws-text)', lineHeight: 1.05 }}><CountUp value={k.value} suffix={k.suffix} /></span>
                   <span style={{ fontSize: 'var(--fs-caption)', color: 'var(--c-ink-soft)' }}>{k.hint}</span>
                 </span>
               </div>
@@ -73,12 +73,12 @@ export function MetricsLayout({ d }: { d: MetricsData }) {
         </Reveal>
       </div>
 
-      <Reveal at={1}>
-        <div style={{ marginTop: 18, display: 'flex', alignItems: 'center', gap: 16, fontSize: 28, color: 'var(--c-green-900)', fontWeight: 600 }}>
-          <span style={{ width: 14, height: 14, borderRadius: 14, background: 'var(--c-lime)' }} />
+      {d.insight && <Reveal at={1}>
+        <div style={{ marginTop: 18, display: 'flex', alignItems: 'center', gap: 16, fontSize: 28, color: 'var(--ws-text)', fontWeight: 600 }}>
+          <span style={{ width: 12, height: 12, borderRadius: 3, background: 'var(--ws-action)' }} />
           {d.insight}
         </div>
-      </Reveal>
+      </Reveal>}
     </div>
   );
 }

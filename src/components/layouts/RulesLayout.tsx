@@ -24,10 +24,10 @@ export function RulesLayout({ d }: { d: RulesData }) {
               position: 'relative', overflow: 'hidden', height: '100%', borderRadius: 'var(--radius-lg)', padding: '38px 40px', display: 'flex', flexDirection: 'column',
               background: r.featured ? 'var(--c-green-900)' : '#fff', color: r.featured ? '#fff' : 'var(--c-ink)', boxShadow: 'var(--shadow-card)',
             }}>
-              <r.icon aria-hidden size={240} strokeWidth={1} style={{ position: 'absolute', right: -30, bottom: -40, color: r.featured ? 'var(--c-lime)' : 'var(--c-green-600)', opacity: r.featured ? 0.16 : 0.08 }} />
+              <r.icon aria-hidden size={240} strokeWidth={1} style={{ position: 'absolute', right: -30, bottom: -40, color: r.featured ? 'var(--ws-selection)' : 'var(--ws-action)', opacity: r.featured ? 0.1 : 0.06 }} />
               <IconBadge icon={r.icon} tone={r.featured ? 'lime' : 'green'} size={84} />
               <span style={{ marginTop: 28, fontSize: 'var(--fs-caption)', fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase', color: r.featured ? 'var(--c-lime)' : 'var(--c-green-600)' }}>{r.use}</span>
-              <span style={{ marginTop: 6, fontSize: 52, fontWeight: 700, letterSpacing: '-0.02em', color: r.featured ? '#fff' : 'var(--c-green-900)' }}>{r.name}</span>
+              <span style={{ marginTop: 6, fontSize: 52, fontWeight: 700, letterSpacing: '-0.02em', color: r.featured ? '#fff' : 'var(--ws-text)' }}>{r.name}</span>
               <p style={{ margin: '18px 0 0', fontSize: 34, lineHeight: 1.3, position: 'relative', color: r.featured ? 'rgba(255,255,255,0.88)' : 'var(--c-ink-soft)' }}>{r.text}</p>
             </div>
           </Reveal>
@@ -40,7 +40,7 @@ export function RulesLayout({ d }: { d: RulesData }) {
           animate={moved ? { left: ['58%', '76%', '90%'], top: [40, -30, 40], opacity: 1 } : { left: '58%', top: 40, opacity: 1 }}
           transition={{ duration: 1.1, ease: 'easeInOut', delay: moved ? 0 : 0.8 }}
         >
-          <span style={{ width: 76, height: 76, borderRadius: 20, background: 'var(--c-gold)', color: '#fff', display: 'grid', placeItems: 'center', boxShadow: 'var(--shadow-card)' }}>
+          <span style={{ width: 76, height: 76, borderRadius: 10, background: 'var(--ws-primary)', color: '#fff', display: 'grid', placeItems: 'center', boxShadow: 'var(--shadow-card)' }}>
             <FileSpreadsheet size={40} />
           </span>
         </motion.div>
@@ -53,7 +53,7 @@ export function RulesLayout({ d }: { d: RulesData }) {
           </div>
         </Reveal>
         <Reveal at={2} from="right" style={{ flex: 1 }}>
-          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 28px', borderRadius: 'var(--radius-md)', background: 'var(--c-green-600)', color: '#fff', fontSize: 32, fontWeight: 600 }}>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 28px', borderRadius: 'var(--radius-md)', background: 'var(--ws-action)', color: '#fff', fontSize: 32, fontWeight: 600 }}>
             {d.motto}
           </div>
         </Reveal>

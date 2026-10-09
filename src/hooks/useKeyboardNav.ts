@@ -20,7 +20,8 @@ export function useKeyboardNav(h: Handlers) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement;
-      if (t.closest('input, textarea, [contenteditable="true"]')) return;
+      if (t.closest('input, textarea, [contenteditable]:not([contenteditable="false"])')) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return; // atalhos (Ctrl+Z etc.) não navegam
       const k = ref.current;
       if (/^[0-9]$/.test(e.key)) { typed.current += e.key; return; }
       switch (e.key) {

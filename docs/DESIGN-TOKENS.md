@@ -1,28 +1,34 @@
-# Design tokens
+# Design tokens — Barracred WorkSpace
 
-Fonte: `src/theme/tokens.ts` e `src/styles/tokens.css` (mantenha os dois iguais).
+> “Uma só linguagem visual.” Fonte: `src/styles/tokens.css` (CSS) e `src/theme/tokens.ts` (TS). Altere os dois juntos.
 
-## Cores da marca
+## Paleta oficial
 | Token | Hex | Uso |
 |---|---|---|
-| --c-green-900 | #104726 | títulos, painéis escuros |
-| --c-green-950 | #0A2416 | fundo profundo (derivado do 900) |
-| --c-green-600 | #28972E | destaques, CTAs |
-| --c-green-700 | #1E6D2F | apoio, linha do gráfico |
-| --c-lime | #AFBF30 | acento, progresso, números vazados |
-| --c-teal / blue / gold / yellow | #23775B / #39A3BE / #DCA349 / #F2EB80 | apoio pontual |
+| `--ws-chrome` | #0B2E1F | fundos escuros (capas, painéis dos dispositivos), barras |
+| `--ws-primary` | #0B5D3B | destaque nos títulos, números vazados, marcas institucionais |
+| `--ws-action` | #12864F | ações, CTAs, progresso, trilhos, marcadores ativos |
+| `--ws-canvas` | #F5F7F6 | fundo dos slides claros |
+| `--ws-selection` | #E8F5E9 | seleção, chips, ícones claros e acento sobre o chrome |
+| `--ws-text` | #1F2937 | títulos e texto |
+| `--ws-muted` / `--ws-border` | #6B7280 / #E5E7EB | texto secundário / bordas |
+| `--ws-chrome-2` | #0F3A28 | derivado: superfície sólida sobre o chrome (no lugar de vidro/transparência) |
 
-Semânticos: sucesso `#28972E`, alerta (laranja) `#E08A1E`, erro `#C8423B`, info `#39A3BE` — sempre com ícone + rótulo.
+Status (somente em **badges discretos**: fundo claro + texto): sucesso #12864F/#E8F5E9 · alerta #B45309/#FEF3C7 · erro #B91C1C/#FEE2E2 · info #1D4ED8/#DBEAFE.
 
-## Tipografia (palco 1920×1080)
-Pilha: `Qanelas → Plus Jakarta Sans (local) → Arial`. Display 124–168 px · título 64–72 · subtítulo 40 · corpo 30 (mín. 24) · label 24 · legenda 21. Números com `tabular-nums`.
+## Princípios aplicados
+1. **ERP corporativo denso, não site de marketing** — removidas as formas decorativas flutuantes e o fundo “aurora”.
+2. **Verde institucional no chrome e nas ações primárias** — chrome nos painéis escuros, ação em botões, trilhos, setas e marcadores.
+3. **Dados primeiro** — números com `tabular-nums`, KPIs e gráficos em destaque, rótulos diretos nas barras.
+4. **Status em badges discretos, nunca como cor da página** — cards e caixas de destaque ficaram neutros; a cor de status aparece só no badge/ícone.
+5. **Sem gradientes, sombras fortes ou efeitos de vidro** — fundos sólidos, área do gráfico em cor lisa, sombra de card = borda 1 px + sombra mínima, sem blur/transparência.
+
+## Tipografia
+Pilha: `Qanelas → Inter (local, @fontsource) → Arial`. Inter é a fonte de referência do WorkSpace; Qanelas assume se os arquivos forem colocados em `public/fonts/`.
+Escala (palco 1920×1080): display 120–168 · título 64–68 · subtítulo 38 · corpo 30 (mín. 24) · label 24 · legenda 21.
 
 ## Forma
-Raios 36/24/14 px · sombra de card suave · triângulos arredondados em SVG (contorno e preenchimento) flutuando devagar · fundo “aurora” (manchas verdes desfocadas) nos painéis escuros.
+Raios 12 / 10 / 6 px · `--shadow-card` (borda 1 px + sombra mínima) · `--shadow-pop` só em elementos sobrepostos (caixas de destaque sobre os mockups).
 
-## Decisões de precedência
-1. **Apresentação** segue a marca (SKILL.md Barracred).
-2. **Dentro dos mockups** (telas de exemplo) seguem os tokens BWS: chrome `#0B2E1F`, canvas `#F5F7F6`, badges tint, raio 6 px.
-3. **Gráficos** recriam o painel “Evolução e Tipos” do BWS (linha + área, barras horizontais) com a paleta da marca; eixo único; maior barra destacada em `#104726`.
-4. **Fonte intermediária:** como os arquivos Qanelas não foram enviados, incluímos Plus Jakarta Sans (local, via @fontsource) antes do Arial para manter o caráter geométrico-humanista. Ao adicionar Qanelas em `public/fonts/`, ela assume automaticamente.
-5. **Referências de composição** (enviadas pelo usuário): ref. 1 → distribuição e numerais vazados; ref. 2 → mockups de notebook/celular sobre painel escuro; ref. 3 → composição de gráficos e fluxos.
+## Compatibilidade
+Nomes antigos foram mantidos como aliases para não quebrar componentes: `--c-green-900/950 → chrome`, `--c-green-700 → primária`, `--c-green-600 → ação`, `--c-lime → seleção`, `--c-paper → canvas`, `--c-ink → texto`.

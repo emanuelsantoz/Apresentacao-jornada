@@ -10,7 +10,7 @@ export const prints = {
   jornadaSessoes: { printId: 'jornada-02-sessoes', label: 'Tela 2 · Últimas sessões', fallback: 'sessoes' },
   jornadaAlerta: { printId: 'jornada-03-alerta', label: 'Tela 3 · Alerta', fallback: 'alerta' },
   jornadaSucesso: { printId: 'jornada-04-sucesso', label: 'Tela 4 · Sucesso', fallback: 'sucesso' },
-  jornadaSemAcesso: { printId: 'jornada-05-sem-acesso', label: 'Tela 5 · Sem acesso', fallback: 'sem-acesso' },
+  jornadaSemAcesso: { printId: 'jornada-05-sem-acesso', label: 'Tela 5 · Sem acesso', fallback: 'sem-acesso', fit: 'contain', position: 'center', bg: '#757575' },
   jornadaSemInfo: { printId: 'jornada-06-sem-informacoes', label: 'Tela 6 · Sem informações', fallback: 'sem-info' },
   jornadaBotaoChamado: { printId: 'jornada-07-botao-abrir-chamado', label: 'Botão Abrir Chamado', fallback: 'sessoes' },
   jornadaFormChamado: { printId: 'jornada-08-observacao', label: 'Observação do chamado', fallback: 'chamado-modal' },

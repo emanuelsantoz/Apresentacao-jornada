@@ -39,9 +39,9 @@ const presets: Record<string, ShapeSpec[]> = {
 export function Shapes({ preset = 'a', dark }: { preset?: keyof typeof presets; dark?: boolean }) {
   const { print } = useSlideState();
   const colors = {
-    outline: dark ? 'rgba(255,255,255,0.14)' : 'rgba(40,151,46,0.22)',
-    fill: dark ? 'rgba(40,151,46,0.35)' : 'rgba(40,151,46,0.12)',
-    outlineLime: dark ? 'rgba(175,191,48,0.4)' : 'rgba(175,191,48,0.5)',
+    outline: dark ? 'rgba(255,255,255,0.12)' : 'rgba(11,93,59,0.18)',
+    fill: dark ? 'rgba(18,134,79,0.3)' : 'rgba(11,93,59,0.08)',
+    outlineLime: dark ? 'rgba(232,245,233,0.25)' : 'rgba(18,134,79,0.25)',
   };
   return (
     <div aria-hidden style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
@@ -59,32 +59,6 @@ export function Shapes({ preset = 'a', dark }: { preset?: keyof typeof presets; 
           )}
         </motion.div>
       ))}
-    </div>
-  );
-}
-
-/** Fundo “aurora”: manchas verdes desfocadas em movimento lento sobre verde profundo. */
-export function Aurora({ variant = 0 }: { variant?: number }) {
-  const { print } = useSlideState();
-  const blobs = [
-    { x: variant ? 1100 : -200, y: variant ? -300 : 400, w: 1100, c: 'rgba(40,151,46,0.55)' },
-    { x: variant ? -300 : 1200, y: variant ? 500 : -250, w: 900, c: 'rgba(175,191,48,0.28)' },
-    { x: 700, y: 700, w: 800, c: 'rgba(35,119,91,0.45)' },
-  ];
-  return (
-    <div aria-hidden style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-      {blobs.map((b, i) => (
-        <motion.div
-          key={i}
-          style={{
-            position: 'absolute', left: b.x, top: b.y, width: b.w, height: b.w, borderRadius: '50%',
-            background: `radial-gradient(circle, ${b.c} 0%, transparent 65%)`, filter: 'blur(30px)',
-          }}
-          animate={print ? undefined : { x: [0, 60 - i * 40, 0], y: [0, 40 + i * 10, 0], scale: [1, 1.08, 1] }}
-          transition={{ duration: 16 + i * 4, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1.5px, transparent 1.5px)', backgroundSize: '36px 36px', maskImage: 'linear-gradient(90deg, #000 0%, transparent 60%)' }} />
     </div>
   );
 }

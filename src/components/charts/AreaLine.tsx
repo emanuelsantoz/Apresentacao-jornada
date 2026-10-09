@@ -31,12 +31,6 @@ export function AreaLine({ data, width, height, color, markMax = true }: Props) 
 
   return (
     <svg width={width} height={height} style={{ overflow: 'visible', fontFamily: 'var(--font-brand)' }}>
-      <defs>
-        <linearGradient id="area-fill" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity={0.22} />
-          <stop offset="100%" stopColor={color} stopOpacity={0} />
-        </linearGradient>
-      </defs>
       <g transform={`translate(${m.l},${m.t})`}>
         {y.ticks(4).map((t) => (
           <g key={t} transform={`translate(0,${y(t)})`}>
@@ -47,7 +41,7 @@ export function AreaLine({ data, width, height, color, markMax = true }: Props) 
         {data.map((d, i) => i % 2 === 0 && (
           <text key={d.label} x={x(d.label)} y={ih + 32} textAnchor="middle" fontSize={17} fill="var(--c-ink-soft)" className="num">{d.label}</text>
         ))}
-        <motion.path d={pathArea} fill="url(#area-fill)" initial={print ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }} />
+        <motion.path d={pathArea} fill="var(--ws-selection)" initial={print ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }} />
         <motion.path
           d={pathLine} fill="none" stroke={color} strokeWidth={3} strokeLinejoin="round" strokeLinecap="round"
           initial={print ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.6, ease: 'easeInOut', delay: 0.3 }}

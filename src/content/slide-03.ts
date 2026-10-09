@@ -9,9 +9,9 @@ export const meta: SlideMeta = {
 };
 
 export const data: CompareData = {
-  eyebrow: 'O problema e a solução',
-  title: ['Qual dor a Jornada', 'do Cooperado resolve?'],
-  before: { label: 'Antes', icon: Hourglass, items: ['Erro sem explicação trava o atendimento.', 'Consultor depende da TI para entender o problema.'] },
-  after: { label: 'Com a Jornada', icon: Zap, items: ['Resposta rápida para problemas comuns.', 'Diagnóstico e recomendação na tela.'] },
+  eyebrow: 'O causa e a solução',
+  title: ['Qual desafio da Jornada do Cooperado?', ''],
+  before: { label: 'Antes', icon: Hourglass, items: ['Pesquisa no Portal de TI e Documentações do Aplicativo', 'Consultor depende da TI para entender o problema'] },
+  after: { label: 'Com a Jornada', icon: Zap, items: ['Resposta rápida para situações comuns', 'Diagnóstico e recomendação imediata'] },
   where: { label: 'Onde fica: novo módulo do BWS_365', path: ['BWS_365', 'Atendimento', 'Jornada do Cooperado'] },
 };

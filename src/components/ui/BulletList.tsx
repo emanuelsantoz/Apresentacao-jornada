@@ -13,7 +13,7 @@ export function BulletList({ items, light, size = 64, gap = 26, delay = 0.2 }: {
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             <IconBadge icon={b.icon} tone={light ? 'glass' : 'white'} size={size} />
             <span style={{ fontSize: 'var(--fs-body)', lineHeight: 1.3, color: light ? 'rgba(255,255,255,0.9)' : 'var(--c-ink)' }}>
-              {b.strong && <strong style={{ fontWeight: 700, color: light ? '#fff' : 'var(--c-green-900)' }}>{b.strong} </strong>}
+              {b.strong && <strong style={{ fontWeight: 700, color: light ? '#fff' : 'var(--ws-text)' }}>{b.strong} </strong>}
               {b.text}
             </span>
           </div>

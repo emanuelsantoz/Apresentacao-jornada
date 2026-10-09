@@ -40,9 +40,9 @@ export function CoverLayout({ d }: { d: CoverData }) {
         </Reveal>
         <Reveal delay={0.3}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginTop: 64 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '16px 18px 16px 30px', borderRadius: 999, border: '2px solid rgba(255,255,255,0.35)', fontSize: 'var(--fs-label)', fontWeight: 500 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 14, padding: '16px 18px 16px 30px', borderRadius: 8, border: '1.5px solid var(--ws-chrome-2)', background: 'var(--ws-chrome-2)', fontSize: 'var(--fs-label)', fontWeight: 500 }}>
               Iniciar treinamento
-              <span style={{ width: 44, height: 44, borderRadius: 44, background: 'var(--c-lime)', color: 'var(--c-green-900)', display: 'grid', placeItems: 'center' }}><ArrowRight size={24} /></span>
+              <span style={{ width: 44, height: 44, borderRadius: 6, background: 'var(--ws-action)', color: '#fff', display: 'grid', placeItems: 'center' }}><ArrowRight size={24} /></span>
             </span>
             <span style={{ fontSize: 'var(--fs-caption)', color: 'rgba(255,255,255,0.6)' }}>{d.meta}</span>
           </div>
@@ -63,7 +63,7 @@ export function CoverLayout({ d }: { d: CoverData }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
       >
-        <Tablet width={600} style={{ transform: 'rotate(-4deg)' }}><Screen spec={d.tablet} /></Tablet>
+        <Tablet width={600} ><Screen spec={d.tablet} /></Tablet>
       </motion.div>
     </>
   );

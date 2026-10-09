@@ -10,10 +10,10 @@ export const meta: SlideMeta = {
 
 export const data: AgendaData = {
   eyebrow: 'Agenda',
-  title: 'O que vamos ver hoje?',
-  side: 'Duas fases, uma meta: resolver mais rápido o que trava o atendimento.',
+  title: 'Qual a nossa Programação de hoje?',
+  side: '',
   items: [
-    { n: '01', icon: Route, title: 'Jornada do Cooperado', text: 'Diagnóstico rápido dentro do atendimento.', topics: ['Telas', 'Diagnóstico', 'Chamados'] },
-    { n: '02', icon: LifeBuoy, title: 'BWS_HELP', text: 'Chamados de TI com prazo e rastreio.', topics: ['Conceitos', 'Métricas', 'Status', 'Teams'] },
+    { n: '01', icon: Route, title: 'Jornada do Cooperado', text: 'Diagnóstico rápido dentro do atendimento', topics: ['Módulos', 'Diagnóstico', 'Chamados'] },
+    { n: '02', icon: LifeBuoy, title: 'BWS_HELP', text: 'Chamados de TI com acompanhamento', topics: ['Aplicação', 'Conceitos', 'Usabilidade', 'Métricas'] },
   ],
 };

@@ -23,16 +23,17 @@ export function StatementLayout({ d }: { d: StatementData }) {
         </h1>
       </Reveal>
       <Reveal at={1}>
-        <p style={{ margin: '44px 0 0', fontSize: 56, fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}>
-          {d.answer[0]} <span style={{ color: 'var(--c-lime)' }}>{d.answer[1]}</span>
+        <p style={{ margin: '44px 0 0', fontSize: 56, fontWeight: 600, color: 'var(--ws-on-chrome-muted)' }}>
+          {d.answer[0]}{' '}
+          <span style={{ fontWeight: 700, color: '#fff', textDecoration: 'underline', textDecorationColor: 'var(--ws-action)', textDecorationThickness: 8, textUnderlineOffset: 12 }}>{d.answer[1]}</span>
         </p>
       </Reveal>
       <span style={{ flex: 1 }} />
       <Reveal at={2} from="up">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 28, padding: '28px 36px', borderRadius: 'var(--radius-lg)', background: 'rgba(255,255,255,0.07)', border: '1.5px solid rgba(175,191,48,0.4)' }}>
-          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: 'var(--c-green-900)', background: 'var(--c-lime)', padding: '10px 20px', borderRadius: 999, textTransform: 'uppercase', letterSpacing: '.08em' }}>{d.rule.label}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28, padding: '28px 36px', borderRadius: 'var(--radius-lg)', background: 'var(--ws-chrome-2)' }}>
+          <span style={{ fontSize: 'var(--fs-label)', fontWeight: 700, color: 'var(--c-green-900)', background: 'var(--ws-selection)', padding: '10px 20px', borderRadius: 6, textTransform: 'uppercase', letterSpacing: '.08em' }}>{d.rule.label}</span>
           {d.rule.steps.map((s, i) => (
-            <span key={s.n} style={{ display: 'inline-flex', alignItems: 'center', gap: 20 }}>
+            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 20 }}>
               {i > 0 && <ArrowRight size={40} color="var(--c-lime)" />}
               <IconBadge icon={s.icon} tone={i === 0 ? 'lime' : 'glass'} size={70} />
               <span style={{ fontSize: 34, fontWeight: 600 }}><span style={{ color: 'var(--c-lime)' }}>{s.n}</span> {s.text}</span>

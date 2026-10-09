@@ -15,22 +15,22 @@ function Card({ s, i, total }: { s: StepCard; i: number; total: number }) {
   return (
     <Reveal at={i} from="up" delay={i === 0 ? 0.2 : 0} style={{ flex: 1, position: 'relative' }}>
       <div style={{ height: '100%', borderRadius: 'var(--radius-lg)', background: '#fff', boxShadow: 'var(--shadow-card)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ position: 'relative', height: 390, margin: 18, marginBottom: 0, borderRadius: 20, overflow: 'hidden', background: 'var(--c-green-950)', border: '6px solid var(--c-green-950)' }}>
+        <div style={{ position: 'relative', height: 390, margin: 18, marginBottom: 0, borderRadius: 8, overflow: 'hidden', background: 'var(--ws-chrome)', border: '6px solid var(--ws-chrome)' }}>
           <Screen spec={s.screen} />
         </div>
         <div style={{ padding: '26px 34px 34px', display: 'flex', gap: 22, alignItems: 'flex-start' }}>
-          <span className="num" style={{ fontSize: 92, fontWeight: 700, lineHeight: 0.85, color: on ? 'var(--c-green-600)' : 'transparent', WebkitTextStroke: '2.5px var(--c-green-600)', transition: 'color .4s' }}>{s.n}</span>
+          <span className="num" style={{ fontSize: 92, fontWeight: 700, lineHeight: 0.85, color: on ? 'var(--ws-primary)' : 'transparent', WebkitTextStroke: '2.5px var(--ws-primary)', transition: 'color .4s' }}>{s.n}</span>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <IconBadge icon={s.icon} tone="dark" size={50} />
-              <span style={{ fontSize: 40, fontWeight: 700, color: 'var(--c-green-900)' }}>{s.verb}</span>
+              <span style={{ fontSize: 40, fontWeight: 700, color: 'var(--ws-text)' }}>{s.verb}</span>
             </div>
             <p style={{ margin: '14px 0 0', fontSize: 'var(--fs-body)', lineHeight: 1.3, color: 'var(--c-ink-soft)' }}>{s.text}</p>
           </div>
         </div>
       </div>
       {i < total - 1 && (
-        <span style={{ position: 'absolute', right: -44, top: 200, zIndex: 3, width: 60, height: 60, borderRadius: 60, background: 'var(--c-lime)', display: 'grid', placeItems: 'center', color: 'var(--c-green-900)', boxShadow: 'var(--shadow-card)' }}>
+        <span style={{ position: 'absolute', right: -44, top: 200, zIndex: 3, width: 60, height: 60, borderRadius: 8, background: 'var(--ws-action)', display: 'grid', placeItems: 'center', color: '#fff', boxShadow: 'var(--shadow-card)' }}>
           <ArrowRight size={30} />
         </span>
       )}

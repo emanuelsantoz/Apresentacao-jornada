@@ -10,13 +10,13 @@ export const meta: SlideMeta = {
 
 export const data: StatementData = {
   eyebrow: 'Alinhamento de comunicação',
-  question: 'E aí, nunca mais usarei o Teams para falar com a TI?',
-  answer: ['Usa, sim.', 'Mas depois do chamado.'],
+  question: 'E AI, Agora é só CHAMADO para falar com a TI?',
+  answer: ['', 'Não, não...'],
   rule: {
     label: 'Regra de ouro',
     steps: [
-      { n: '1º', icon: TicketPlus, text: 'Abra o chamado' },
-      { n: '2º', icon: MessageCircle, text: 'Teams só se for prioridade' },
+      { n: '', icon: TicketPlus, text: 'Abra o chamado' },
+      { n: '', icon: MessageCircle, text: 'Se necessário, utilize outros meios' },
     ],
   },
 };

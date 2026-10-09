@@ -8,7 +8,7 @@ const THUMB = 340;
 export function Overview({ slides, current, onPick }: { slides: SlideDef[]; current: number; onPick: (i: number) => void }) {
   const s = THUMB / stage.width;
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 50, background: 'rgba(6,24,14,0.94)', overflow: 'auto', padding: 40 }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 50, background: 'var(--ws-chrome)', overflow: 'auto', padding: 40 }}>
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, ${THUMB}px)`, gap: 24, justifyContent: 'center' }}>
         {slides.map((sl, i) => (
           <button
@@ -16,13 +16,13 @@ export function Overview({ slides, current, onPick }: { slides: SlideDef[]; curr
             onClick={() => onPick(i)}
             style={{ all: 'unset', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 8 }}
           >
-            <div style={{ width: THUMB, height: stage.height * s, overflow: 'hidden', borderRadius: 10, position: 'relative', outline: i === current ? '3px solid var(--c-lime)' : '1px solid rgba(255,255,255,0.15)' }}>
+            <div style={{ width: THUMB, height: stage.height * s, overflow: 'hidden', borderRadius: 6, position: 'relative', outline: i === current ? '3px solid var(--ws-action)' : '1px solid var(--ws-chrome-2)' }}>
               <div style={{ width: stage.width, height: stage.height, transform: `scale(${s})`, transformOrigin: '0 0', pointerEvents: 'none', position: 'absolute' }}>
                 <SlideView slide={sl} index={i} total={slides.length} step={sl.steps ?? 0} print active={false} />
               </div>
             </div>
             <span style={{ color: '#fff', fontSize: 14 }}>
-              <b style={{ color: 'var(--c-lime)' }}>{i + 1}</b> · {sl.title}
+              <b style={{ color: 'var(--ws-selection)' }}>{i + 1}</b> · {sl.title}
             </span>
           </button>
         ))}

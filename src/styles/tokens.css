@@ -1,56 +1,79 @@
+/*
+ * Design system: Barracred WorkSpace — “uma só linguagem visual”.
+ * Princípios: ERP corporativo denso (não site de marketing) · verde institucional no chrome
+ * e nas ações primárias · dados primeiro (números tabulares) · status em badges discretos,
+ * nunca como cor da página · sem gradientes, sombras fortes ou efeitos de vidro.
+ *
+ * Os nomes antigos (--c-green-900, --c-lime…) foram mantidos e remapeados para os
+ * tokens do WorkSpace, assim todos os componentes seguem o novo sistema.
+ */
 :root {
-  /* Marca Barracred */
+  /* WorkSpace — paleta oficial */
+  --ws-chrome: #0b2e1f;
+  --ws-primary: #0b5d3b;
+  --ws-action: #12864f;
+  --ws-canvas: #f5f7f6;
+  --ws-selection: #e8f5e9;
+  --ws-text: #1f2937;
+  /* apoio neutro (derivado do BWS) */
+  --ws-muted: #6b7280;
+  --ws-border: #e5e7eb;
+  --ws-surface: #ffffff;
+  --ws-chrome-2: #0f3a28; /* superfície elevada sobre o chrome (cor sólida, sem transparência) */
+  --ws-on-chrome-muted: #a7b8ae; /* texto secundário sobre o chrome */
+
+  /* Aliases usados pelos componentes */
   --c-white: #ffffff;
-  --c-green-900: #104726;
-  --c-green-950: #0a2416; /* derivado do green-900 para fundos escuros profundos */
-  --c-green-700: #1e6d2f;
-  --c-green-600: #28972e;
-  --c-lime: #afbf30;
-  --c-teal: #23775b;
-  --c-blue: #39a3be;
-  --c-gold: #dca349;
-  --c-yellow: #f2eb80;
+  --c-green-950: var(--ws-chrome);
+  --c-green-900: var(--ws-chrome);
+  --c-green-700: var(--ws-primary);
+  --c-green-600: var(--ws-action);
+  --c-lime: var(--ws-selection); /* antigo acento lima → Seleção */
+  --c-teal: var(--ws-primary);
+  --c-blue: #2563eb;
+  --c-gold: #b7791f;
+  --c-yellow: #fef3c7;
 
-  /* Neutros da apresentação */
-  --c-paper: #f4f8f3;
-  --c-paper-edge: #dcecdc;
-  --c-ink: #0f2a1a;
-  --c-ink-soft: #46604f;
-  --c-line: rgba(16, 71, 38, 0.14);
+  --c-paper: var(--ws-canvas);
+  --c-paper-edge: var(--ws-canvas);
+  --c-ink: var(--ws-text);
+  --c-ink-soft: var(--ws-muted);
+  --c-line: var(--ws-border);
 
-  /* Semânticos */
-  --c-success: #28972e;
-  --c-success-tint: #e3f3e4;
-  --c-alert: #e08a1e;
-  --c-alert-tint: #fdf0dd;
-  --c-danger: #c8423b;
-  --c-danger-tint: #fbe5e3;
-  --c-info: #39a3be;
-  --c-info-tint: #e1f2f6;
+  /* Status — somente em badges (tint + texto escuro), nunca como cor de fundo de página */
+  --c-success: #12864f;
+  --c-success-tint: #e8f5e9;
+  --c-alert: #b45309;
+  --c-alert-tint: #fef3c7;
+  --c-danger: #b91c1c;
+  --c-danger-tint: #fee2e2;
+  --c-info: #1d4ed8;
+  --c-info-tint: #dbeafe;
 
-  /* BWS (somente mockups) */
-  --bws-chrome: #0b2e1f;
-  --bws-primary: #0b5d3b;
-  --bws-action: #12864f;
-  --bws-canvas: #f5f7f6;
-  --bws-text: #1f2937;
-  --bws-muted: #6b7280;
-  --bws-border: #e5e7eb;
-  --bws-selection: #e8f5e9;
+  /* BWS (mockups) = mesmos tokens */
+  --bws-chrome: var(--ws-chrome);
+  --bws-primary: var(--ws-primary);
+  --bws-action: var(--ws-action);
+  --bws-canvas: var(--ws-canvas);
+  --bws-text: var(--ws-text);
+  --bws-muted: var(--ws-muted);
+  --bws-border: var(--ws-border);
+  --bws-selection: var(--ws-selection);
 
   /* Tipografia */
-  --font-brand: 'Qanelas', 'Plus Jakarta Sans', Arial, sans-serif;
-  --fs-display: 128px;
-  --fs-title: 72px;
-  --fs-subtitle: 40px;
+  --font-brand: 'Qanelas', 'Inter', Arial, sans-serif;
+  --fs-display: 120px;
+  --fs-title: 68px;
+  --fs-subtitle: 38px;
   --fs-body: 30px;
   --fs-label: 24px;
   --fs-caption: 21px;
 
-  /* Forma */
-  --radius-lg: 36px;
-  --radius-md: 24px;
-  --radius-sm: 14px;
-  --shadow-card: 0 18px 50px -20px rgba(10, 36, 22, 0.35);
-  --shadow-device: 0 50px 90px -30px rgba(5, 20, 12, 0.6);
+  /* Forma: raios pequenos, sem sombras fortes */
+  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --shadow-card: 0 0 0 1px var(--ws-border), 0 1px 2px rgba(17, 24, 39, 0.05);
+  --shadow-device: 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-pop: 0 4px 12px rgba(17, 24, 39, 0.12); /* elementos sobrepostos (callouts) */
 }

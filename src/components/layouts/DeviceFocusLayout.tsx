@@ -2,7 +2,6 @@ import type { LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Laptop, Tablet } from '../devices/Devices';
 import { Screen, type ScreenSpec } from '../devices/Screen';
-import { Aurora } from '../stage/Shapes';
 import { BulletList, type Bullet } from '../ui/BulletList';
 import { Chip } from '../ui/Chip';
 import { IconBadge } from '../ui/IconBadge';
@@ -39,9 +38,6 @@ export interface DeviceFocusData {
   where?: string[];
 }
 
-const toneColor: Record<Tone, string> = {
-  green: 'var(--c-green-600)', success: 'var(--c-success)', alert: 'var(--c-alert)', danger: 'var(--c-danger)', info: 'var(--c-info)', lime: 'var(--c-lime)',
-};
 const badgeTone = (t: Tone) => (t === 'lime' ? 'lime' : t);
 
 /**
@@ -53,8 +49,7 @@ export function DeviceFocusLayout({ d }: { d: DeviceFocusData }) {
   const laptop = d.device === 'laptop';
   return (
     <>
-      <div style={{ position: 'absolute', left: 820, top: 0, right: 0, bottom: 0, borderRadius: '56px 0 0 56px', overflow: 'hidden', background: 'var(--c-green-950)' }}>
-        <Aurora variant={0} />
+      <div style={{ position: 'absolute', left: 820, top: 0, right: 0, bottom: 0, borderRadius: '16px 0 0 16px', overflow: 'hidden', background: 'var(--c-green-950)' }}>
       </div>
 
       <div style={{ position: 'absolute', left: 96, top: 170, width: 640 }}>
@@ -93,11 +88,11 @@ export function DeviceFocusLayout({ d }: { d: DeviceFocusData }) {
         <Reveal key={i} at={f.at ?? 0} delay={0.45 + i * 0.12} from={f.drop ? 'down' : 'scale'} style={{ position: 'absolute', left: f.x, top: f.y, width: f.w ?? 420, zIndex: 20 }}>
           <div style={{
             display: 'flex', alignItems: f.text ? 'flex-start' : 'center', gap: 18, padding: '20px 24px', borderRadius: 'var(--radius-md)', background: '#fff',
-            boxShadow: '0 30px 60px -18px rgba(5,20,12,0.55)', borderLeft: `8px solid ${toneColor[f.tone]}`,
+            boxShadow: 'var(--shadow-pop)', border: '1px solid var(--ws-border)',
           }}>
             <IconBadge icon={f.icon} tone={badgeTone(f.tone)} size={54} />
             <div>
-              <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--c-green-900)', lineHeight: 1.2 }}>{f.title}</div>
+              <div style={{ fontSize: 28, fontWeight: 700, color: 'var(--ws-text)', lineHeight: 1.2 }}>{f.title}</div>
               {f.text && <div style={{ fontSize: 23, color: 'var(--c-ink-soft)', marginTop: 6, lineHeight: 1.3 }}>{f.text}</div>}
             </div>
           </div>

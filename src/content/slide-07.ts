@@ -14,7 +14,7 @@ export const data: FlowData = {
   nodes: [
     { n: '01', icon: Smartphone, title: 'Ação do cooperado', text: 'Ele usa o app Barracred.' },
     { n: '02', icon: ScrollText, title: 'Registro em log', text: 'Cada passo vira um registro.' },
-    { n: '03', icon: Cpu, title: 'Diagnóstico', text: 'Os logs viram status na Jornada.' },
+    { n: '03', icon: Cpu, title: 'Diagnóstico', text: 'Os logs viram status na Jornada do Cooperado' },
   ],
   band: { strong: '100% baseada em logs.', text: 'Sem ação do cooperado, não há dado.' },
 };

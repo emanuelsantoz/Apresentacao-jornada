@@ -11,15 +11,15 @@ export const meta: SlideMeta = {
 
 export const data: DeviceFocusData = {
   eyebrow: 'Validação do chamado',
-  title: ['Chegou o e‑mail?', 'Chamado aberto.'],
+  title: ['Chegou o e-mail?', 'Chamado aberto!'],
   bullets: [
-    { icon: MailCheck, text: 'Confirmação chega logo após a criação.' },
-    { icon: Save, strong: 'Guarde', text: 'o número do chamado.' },
+    { icon: MailCheck, text: 'Confirmação chega logo após a criação e a cada iteração' },
+    { icon: Save, strong: 'Chamado registrado', text: '' },
   ],
   device: 'laptop',
   screen: prints.jornadaEmail,
   floats: [
-    { icon: BellRing, title: 'Novo e‑mail', text: 'Chamado aberto via Jornada', tone: 'green', x: 1290, y: 150, w: 500, drop: true },
+    { icon: BellRing, title: 'Novo e-mail', text: 'Chamado aberto via Jornada', tone: 'green', x: 1290, y: 150, w: 500, drop: true },
     { icon: Hash, title: 'Nº do chamado', text: 'Use para acompanhar', tone: 'lime', x: 790, y: 700, w: 400, at: 0 },
   ],
 };

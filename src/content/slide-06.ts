@@ -11,20 +11,20 @@ export const meta: SlideMeta = {
 
 export const data: TabletDuoData = {
   eyebrow: 'Como utilizar · 3 de 3',
-  title: 'Quando não há dados, abra chamado',
+  title: 'Jornada do Cooperado sem registros',
   screens: [
     {
       tag: 'Tela 5', name: 'Nunca acessou', tone: 'info', icon: UserX,
-      bullets: ['Cooperado ainda não usou o app.', 'Oriente o primeiro acesso.'],
+      bullets: ['Cooperado ainda não usou o app.', 'Oriente o uso do Aplicativo'],
       screen: prints.jornadaSemAcesso,
-      callout: { icon: UserPlus, title: 'Primeiro acesso', text: 'Sem histórico no app: comece pela orientação.' },
-      spot: { x: 50, y: 42 },
+      callout: { icon: UserPlus, title: '', text: '' },
+      spot: { x: 50, y: 66 },
     },
     {
       tag: 'Tela 6', name: 'Sem informações', tone: 'alert', icon: FileQuestion,
-      bullets: ['Dados insuficientes para diagnóstico.', 'Recomendação: Abrir Chamado.'],
+      bullets: ['Dados insuficientes para diagnóstico'],
       screen: prints.jornadaSemInfo,
-      callout: { icon: TicketPlus, title: 'Abrir Chamado', text: 'Sem dados para diagnóstico? A TI assume daqui.' },
+      callout: { icon: TicketPlus, title: 'Abrir Chamado', text: '' },
       spot: { x: 54, y: 66 },
     },
   ],

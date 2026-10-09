@@ -26,7 +26,7 @@ const Bar = ({ w, h = 12, o = 1, color = '#d6dcd9' }: { w: number | string; h?: 
 
 const Badge = ({ tone, children }: { tone: 'ok' | 'alert' | 'danger' | 'info' | 'muted'; children: ReactNode }) => {
   const t = {
-    ok: ['#E3F3E4', '#1E6D2F'], alert: ['#FDF0DD', '#9A5A0C'], danger: ['#FBE5E3', '#9B2C26'], info: ['#E1F2F6', '#1F6B7E'], muted: ['#EEF0EF', '#4B5563'],
+    ok: ['#E8F5E9', '#0B5D3B'], alert: ['#FEF3C7', '#B45309'], danger: ['#FEE2E2', '#B91C1C'], info: ['#DBEAFE', '#1D4ED8'], muted: ['#EEF0EF', '#4B5563'],
   }[tone];
   return <span style={{ background: t[0], color: t[1], borderRadius: 6, padding: '5px 12px', fontSize: 17, fontWeight: 600, whiteSpace: 'nowrap' }}>{children}</span>;
 };
@@ -92,13 +92,13 @@ const CooperadoBar = () => (
 /* ---------- Jornada: sessões ---------- */
 type SessionStatus = 'ok' | 'alert' | 'danger';
 const statusText = { ok: 'Sucesso', alert: 'Alerta', danger: 'Erro' };
-const statusColor = { ok: '#28972E', alert: '#E08A1E', danger: '#C8423B' };
+const statusColor = { ok: '#12864F', alert: '#B45309', danger: '#B91C1C' };
 
 function SessionRow({ n, status, focus, expanded }: { n: number; status: SessionStatus; focus?: boolean; expanded?: boolean }) {
   return (
     <Card style={{
       padding: '18px 22px', borderLeft: `6px solid ${statusColor[status]}`,
-      boxShadow: focus ? `0 0 0 3px ${statusColor[status]}55` : 'none', background: expanded ? '#FFFCF7' : '#fff',
+      boxShadow: focus ? `0 0 0 3px ${statusColor[status]}55` : 'none', background: expanded ? '#FFFBEB' : '#fff',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
         <span style={{ width: 46, height: 46, borderRadius: 10, background: `${statusColor[status]}1f`, color: statusColor[status], display: 'grid', placeItems: 'center' }}>
@@ -110,7 +110,7 @@ function SessionRow({ n, status, focus, expanded }: { n: number; status: Session
         </div>
         <div style={{ display: 'flex', gap: 6 }}>
           {[0, 1, 2, 3].map((i) => (
-            <span key={i} style={{ width: 34, height: 8, borderRadius: 8, background: status !== 'ok' && i === 3 ? statusColor[status] : '#28972E', opacity: status !== 'ok' && i === 3 ? 1 : 0.55 }} />
+            <span key={i} style={{ width: 34, height: 8, borderRadius: 8, background: status !== 'ok' && i === 3 ? statusColor[status] : '#12864F', opacity: status !== 'ok' && i === 3 ? 1 : 0.55 }} />
           ))}
         </div>
         <Badge tone={status === 'ok' ? 'ok' : status === 'alert' ? 'alert' : 'danger'}>{statusText[status]}</Badge>
@@ -133,7 +133,7 @@ function JornadaHeader() {
 
 const EmptyState = ({ icon: I, title, text, cta }: { icon: typeof UserX; title: string; text: string; cta?: boolean }) => (
   <Card style={{ height: 560, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22, textAlign: 'center' }}>
-    <span style={{ width: 110, height: 110, borderRadius: 30, background: cta ? '#FDF0DD' : c.sel, color: cta ? '#E08A1E' : c.primary, display: 'grid', placeItems: 'center' }}><I size={56} strokeWidth={1.5} /></span>
+    <span style={{ width: 110, height: 110, borderRadius: 30, background: cta ? '#FEF3C7' : c.sel, color: cta ? '#B45309' : c.primary, display: 'grid', placeItems: 'center' }}><I size={56} strokeWidth={1.5} /></span>
     <span style={{ fontSize: 30, fontWeight: 700 }}>{title}</span>
     <span style={{ fontSize: 20, color: c.muted, maxWidth: 560 }}>{text}</span>
     {cta && <Btn><TicketPlus size={20} /> Abrir Chamado</Btn>}
@@ -153,9 +153,9 @@ function Inicio() {
         {cards.map(({ t, i: I, hl }) => (
           <Card key={t} style={{
             padding: 22, height: 170, display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-            border: hl ? '2.5px solid #28972E' : `1px solid ${c.border}`, background: hl ? c.sel : '#fff', position: 'relative',
+            border: hl ? '2.5px solid #12864F' : `1px solid ${c.border}`, background: hl ? c.sel : '#fff', position: 'relative',
           }}>
-            <span style={{ width: 52, height: 52, borderRadius: 12, background: hl ? '#28972E' : c.canvas, color: hl ? '#fff' : c.primary, display: 'grid', placeItems: 'center' }}><I size={26} /></span>
+            <span style={{ width: 52, height: 52, borderRadius: 12, background: hl ? '#12864F' : c.canvas, color: hl ? '#fff' : c.primary, display: 'grid', placeItems: 'center' }}><I size={26} /></span>
             <span style={{ fontSize: 21, fontWeight: 700 }}>{t}</span>
             {hl ? <span style={{ position: 'absolute', top: 18, right: 18 }}><Badge tone="ok">Novo</Badge></span> : <Bar w="55%" h={9} />}
           </Card>
@@ -176,8 +176,8 @@ function Sessoes({ mode }: { mode: 'sessoes' | 'alerta' | 'sucesso' | 'chamado-m
     <Shell title="Jornada do Cooperado" crumb="BWS_365 / Atendimento / Jornada">
       <JornadaHeader />
       {mode === 'sucesso' && (
-        <Card style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 20px', marginBottom: 16, background: '#E3F3E4', borderColor: '#bfe3c2' }}>
-          <CheckCircle2 size={26} color="#28972E" /><span style={{ fontWeight: 700, fontSize: 20, color: '#1E6D2F' }}>Tudo certo nas últimas sessões</span>
+        <Card style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 20px', marginBottom: 16, background: '#E8F5E9', borderColor: '#C6E6CC' }}>
+          <CheckCircle2 size={26} color="#12864F" /><span style={{ fontWeight: 700, fontSize: 20, color: '#0B5D3B' }}>Tudo certo nas últimas sessões</span>
         </Card>
       )}
       <div style={{ display: 'grid', gridTemplateColumns: expanded ? '1fr 1fr' : '1fr', gap: 18 }}>
@@ -190,15 +190,15 @@ function Sessoes({ mode }: { mode: 'sessoes' | 'alerta' | 'sucesso' | 'chamado-m
           )}
         </div>
         {expanded && (
-          <Card style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 18, borderTop: '5px solid #E08A1E' }}>
-            <span style={{ fontWeight: 700, fontSize: 21, display: 'flex', alignItems: 'center', gap: 10 }}><AlertTriangle size={22} color="#E08A1E" /> Sessão 2 · Alerta</span>
-            <div style={{ background: '#FDF0DD', borderRadius: 6, padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <span style={{ fontWeight: 700, color: '#9A5A0C', fontSize: 17 }}>DIAGNÓSTICO</span>
-              <Bar w="92%" h={10} color="#efc98f" /><Bar w="70%" h={10} color="#efc98f" />
+          <Card style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 18, borderTop: '5px solid #B45309' }}>
+            <span style={{ fontWeight: 700, fontSize: 21, display: 'flex', alignItems: 'center', gap: 10 }}><AlertTriangle size={22} color="#B45309" /> Sessão 2 · Alerta</span>
+            <div style={{ background: '#FEF3C7', borderRadius: 6, padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <span style={{ fontWeight: 700, color: '#B45309', fontSize: 17 }}>DIAGNÓSTICO</span>
+              <Bar w="92%" h={10} color="#F5D9A0" /><Bar w="70%" h={10} color="#F5D9A0" />
             </div>
             <div style={{ background: c.sel, borderRadius: 6, padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <span style={{ fontWeight: 700, color: c.primary, fontSize: 17 }}>RECOMENDAÇÃO</span>
-              <Bar w="88%" h={10} color="#b9dcbd" /><Bar w="60%" h={10} color="#b9dcbd" />
+              <Bar w="88%" h={10} color="#C6E6CC" /><Bar w="60%" h={10} color="#C6E6CC" />
             </div>
             <span style={{ flex: 1 }} />
             <Btn ghost style={{ alignSelf: 'flex-start' }}><TicketPlus size={18} /> Abrir Chamado</Btn>
@@ -249,11 +249,11 @@ function Email({ subject = 'Chamado aberto com sucesso' }: { subject?: string })
       <div style={{ flex: 1, padding: 40, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <span style={{ fontSize: 30, fontWeight: 700 }}>{subject}</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <span style={{ width: 50, height: 50, borderRadius: 50, background: 'var(--c-green-900)', color: 'var(--c-lime)', display: 'grid', placeItems: 'center', fontWeight: 700 }}>B</span>
+          <span style={{ width: 50, height: 50, borderRadius: 50, background: 'var(--c-green-900)', color: 'var(--ws-selection)', display: 'grid', placeItems: 'center', fontWeight: 700 }}>B</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontWeight: 600, fontSize: 18 }}>BWS_HELP</span><Bar w={200} h={9} /></div>
         </div>
-        <Card style={{ padding: 26, display: 'flex', flexDirection: 'column', gap: 16, borderTop: '5px solid #28972E' }}>
-          <span style={{ display: 'flex', gap: 12, alignItems: 'center', fontWeight: 700, fontSize: 21 }}><CheckCircle2 color="#28972E" /> Seu chamado foi registrado</span>
+        <Card style={{ padding: 26, display: 'flex', flexDirection: 'column', gap: 16, borderTop: '5px solid #12864F' }}>
+          <span style={{ display: 'flex', gap: 12, alignItems: 'center', fontWeight: 700, fontSize: 21 }}><CheckCircle2 color="#12864F" /> Seu chamado foi registrado</span>
           <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', rowGap: 14, fontSize: 18 }}>
             <span style={{ color: c.muted }}>Nº do chamado</span><span style={{ fontWeight: 700, color: '#12864F' }}>#000000</span>
             <span style={{ color: c.muted }}>Categoria</span><Bar w={180} />
@@ -272,7 +272,7 @@ function HelpShell({ children, title = 'Caixa do Help' }: { children: ReactNode;
 
 function CaixaHelp() {
   const kpi = ['Abertos', 'Em atendimento', 'Aguardando você', 'Resolvidos'];
-  const kc = ['#39A3BE', '#28972E', '#E08A1E', '#1E6D2F'];
+  const kc = ['#1D4ED8', '#12864F', '#B45309', '#0B5D3B'];
   const prio: Array<['danger' | 'alert' | 'info' | 'muted', string]> = [['danger', 'Alta'], ['alert', 'Média'], ['info', 'Baixa'], ['alert', 'Média'], ['muted', 'Baixa']];
   return (
     <HelpShell>
@@ -340,14 +340,14 @@ function Acompanhamento() {
             <span style={{ fontWeight: 700, fontSize: 20 }}>Status</span>
             {steps.map(([s, done], i) => (
               <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <span style={{ width: 22, height: 22, borderRadius: 22, background: done ? '#28972E' : '#fff', border: `3px solid ${done ? '#28972E' : c.border}`, boxShadow: i === 1 ? '0 0 0 6px #28972E33' : 'none' }} />
+                <span style={{ width: 22, height: 22, borderRadius: 22, background: done ? '#12864F' : '#fff', border: `3px solid ${done ? '#12864F' : c.border}`, boxShadow: i === 1 ? '0 0 0 6px #12864F33' : 'none' }} />
                 <span style={{ fontSize: 18, fontWeight: i === 1 ? 700 : 500, color: done ? c.text : c.muted }}>{s}</span>
               </div>
             ))}
           </Card>
           <Card style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <span style={{ fontWeight: 700, fontSize: 20 }}>Prazo (SLA)</span>
-            <div style={{ height: 14, borderRadius: 14, background: c.canvas, overflow: 'hidden' }}><div style={{ width: '45%', height: '100%', background: '#28972E' }} /></div>
+            <div style={{ height: 14, borderRadius: 14, background: c.canvas, overflow: 'hidden' }}><div style={{ width: '45%', height: '100%', background: '#12864F' }} /></div>
             <Bar w="50%" h={9} />
           </Card>
         </div>
@@ -361,7 +361,7 @@ function Avaliacao() {
     <HelpShell title="Chamado #000001">
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(11,46,31,0.4)', display: 'grid', placeItems: 'center' }}>
         <Card style={{ width: 660, padding: 36, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, textAlign: 'center' }}>
-          <span style={{ width: 80, height: 80, borderRadius: 24, background: '#E3F3E4', color: '#28972E', display: 'grid', placeItems: 'center' }}><CheckCircle2 size={44} /></span>
+          <span style={{ width: 80, height: 80, borderRadius: 24, background: '#E8F5E9', color: '#12864F', display: 'grid', placeItems: 'center' }}><CheckCircle2 size={44} /></span>
           <span style={{ fontSize: 28, fontWeight: 700 }}>Chamado resolvido!</span>
           <span style={{ fontSize: 19, color: c.muted }}>Como foi o atendimento?</span>
           <div style={{ display: 'flex', gap: 14 }}>{[1, 2, 3, 4, 5].map((i) => <Star key={i} size={50} fill={i <= 4 ? '#DCA349' : 'none'} color="#DCA349" strokeWidth={1.5} />)}</div>
@@ -375,12 +375,12 @@ function Avaliacao() {
 
 function App() {
   return (
-    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(180deg, #104726 0%, #1E6D2F 38%, #F5F7F6 38%)', padding: '90px 30px 30px', fontFamily: 'var(--font-brand)', display: 'flex', flexDirection: 'column', gap: 22 }}>
+    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(180deg, #104726 0%, #0B5D3B 38%, #F5F7F6 38%)', padding: '90px 30px 30px', fontFamily: 'var(--font-brand)', display: 'flex', flexDirection: 'column', gap: 22 }}>
       <span style={{ color: '#fff', fontSize: 30, fontWeight: 700 }}>Olá, cooperado</span>
       <Bar w="60%" h={14} color="rgba(255,255,255,.4)" />
       <Card style={{ padding: 22, borderRadius: 18, display: 'flex', flexDirection: 'column', gap: 14, marginTop: 30 }}><Bar w="40%" /><Bar w="70%" h={20} color="#cfd8d3" /></Card>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
-        {[0, 1, 2, 3, 4, 5].map((i) => <Card key={i} style={{ height: 110, borderRadius: 16, display: 'grid', placeItems: 'center' }}><span style={{ width: 44, height: 44, borderRadius: 12, background: i === 1 ? '#28972E' : c.sel }} /></Card>)}
+        {[0, 1, 2, 3, 4, 5].map((i) => <Card key={i} style={{ height: 110, borderRadius: 16, display: 'grid', placeItems: 'center' }}><span style={{ width: 44, height: 44, borderRadius: 12, background: i === 1 ? '#12864F' : c.sel }} /></Card>)}
       </div>
     </div>
   );

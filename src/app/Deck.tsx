@@ -12,6 +12,7 @@ import { motionTokens } from '../theme/tokens';
 import { useEditMode } from '../edit/EditMode';
 import { EditBar } from '../edit/EditBar';
 import { TextEditor } from '../edit/TextEditor';
+import { Toast } from '../edit/notify';
 
 /**
  * Deck: um slide por vez, navegação por teclado, clique, toque e URL.
@@ -90,12 +91,13 @@ export function Deck({ slides }: { slides: SlideDef[] }) {
         <>
           <EditBar slideId={slide.id} onExit={() => setEditing(false)} />
           <TextEditor />
+          <Toast />
         </>
       )}
 
       {notes && slide.notes && (
-        <div className="no-print" style={{ position: 'fixed', left: 20, bottom: 20, maxWidth: 560, zIndex: 45, background: 'rgba(6,24,14,0.92)', color: '#fff', padding: '16px 20px', borderRadius: 14, fontSize: 16, lineHeight: 1.45, border: '1px solid rgba(175,191,48,0.4)' }}>
-          <b style={{ color: 'var(--c-lime)' }}>Notas · slide {index + 1}</b>
+        <div className="no-print" style={{ position: 'fixed', left: 20, bottom: 20, maxWidth: 560, zIndex: 45, background: 'var(--ws-chrome)', color: '#fff', padding: '16px 20px', borderRadius: 8, fontSize: 16, lineHeight: 1.45, border: '1px solid var(--ws-chrome-2)' }}>
+          <b style={{ color: 'var(--ws-selection)' }}>Notas · slide {index + 1}</b>
           <div style={{ marginTop: 6 }}>{slide.notes}</div>
         </div>
       )}

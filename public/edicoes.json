@@ -1,1 +1,595 @@
-{}
+{
+  "versao": 2,
+  "textos": {
+    "slide-01": {
+      "0.0.1.0.0::Treinamento · Consultoria e Atendimento": {
+        "texts": [
+          "Treinamento "
+        ]
+      },
+      "0.0.1.2.0::Soluções inteligentes para problemas comuns.": {
+        "texts": [
+          "Soluções práticas para desafios do dia a dia"
+        ],
+        "color": "#E8F5E9"
+      }
+    },
+    "slide-02": {
+      "0.2.0.0.2.0::Duas fases, uma meta: resolver mais rápido o que trava o atendimento.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.0.0.1.0::O que vamos ver hoje?": {
+        "texts": [
+          "Qual a nossa Programação de hoje?"
+        ]
+      },
+      "0.2.1.0.0.2.2.0::Telas": {
+        "texts": [
+          "Módulos"
+        ]
+      },
+      "0.2.1.1.0.2.1::Chamados de TI com prazo e rastreio.": {
+        "texts": [
+          "Chamados de TI com acompanhamento"
+        ]
+      },
+      "0.2.1.1.0.2.2.0::Conceitos": {
+        "texts": [
+          "Aplicação"
+        ]
+      },
+      "0.2.1.1.0.2.2.1::Métricas": {
+        "texts": [
+          "Conceitos"
+        ]
+      },
+      "0.2.1.1.0.2.2.2::Status": {
+        "texts": [
+          "Usabilidade"
+        ]
+      },
+      "0.2.1.1.0.2.2.3::Teams": {
+        "texts": [
+          "Métricas"
+        ]
+      },
+      "0.2.1.0.0.2.1::Diagnóstico rápido dentro do atendimento.": {
+        "texts": [
+          "Diagnóstico rápido dentro do atendimento"
+        ]
+      }
+    },
+    "slide-03": {
+      "0.2.0.0.0.0::O problema e a solução": {
+        "texts": [
+          "O Causa e a Solução"
+        ]
+      },
+      "0.2.0.0.1.0::Qual dor a Jornada": {
+        "texts": [
+          "Qual desafio da Jornada do Cooperado?"
+        ]
+      },
+      "0.2.0.0.1.0.0::do Cooperado resolve?": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.0.1.0.0.2::Erro sem explicação trava o atendimento.": {
+        "texts": [
+          "Pesquisa no Portal de TI e Documentações do Aplicativo"
+        ]
+      },
+      "0.2.0.1.2.0.2::Resposta rápida para problemas comuns.": {
+        "texts": [
+          "Resposta rápida para situações comuns"
+        ]
+      },
+      "0.2.0.1.2.0.3::Diagnóstico e recomendação na tela.": {
+        "texts": [
+          "Diagnóstico e recomendação imediata"
+        ]
+      },
+      "0.2.0.1.0.0.3::Consultor depende da TI para entender o problema.": {
+        "texts": [
+          "Consultor depende da TI para entender o problema"
+        ]
+      }
+    },
+    "slide-04": {
+      "0.2.1.1.1.0.1.2::Já acessou o app": {
+        "texts": [
+          "Jornada do Cooperado"
+        ]
+      },
+      "0.2.1.1.1.0.2::Veja as 3 últimas sessões no app Barracred.": {
+        "texts": [
+          "Veja as 3 últimas sessões do app Barracred"
+        ]
+      },
+      "0.2.1.0.1.0::Do atendimento à Jornada em 1 clique": {
+        "texts": [
+          "Do Atendimento à Jornada em 1 clique"
+        ]
+      },
+      "0.2.1.1.0.0.3::Clique no card “Jornada do Cooperado”.": {
+        "texts": [
+          "Clique no card “Jornada do Cooperado”"
+        ]
+      },
+      "0.2.4.1::O card aparece logo após iniciar o atendimento.": {
+        "texts": [
+          "O card aparece logo após iniciar o atendimento"
+        ]
+      },
+      "0.2.1.1.1.0.3::Cada sessão mostra o que aconteceu.": {
+        "texts": [
+          "Cada sessão mostra o que aconteceu"
+        ]
+      },
+      "0.2.4.1::Histórico recente de uso do app pelo cooperado.": {
+        "texts": [
+          "Histórico recente de uso do app pelo cooperado"
+        ]
+      }
+    },
+    "slide-05": {
+      "0.2.1.0.1.0::A cor já diz o que fazer": {
+        "texts": [
+          "As cores revelam o que está acontecendo"
+        ]
+      },
+      "0.2.4.1::O erro explicado e o próximo passo recomendado.": {
+        "texts": [
+          "O cenário é explicado, e o próximo passo recomendado"
+        ]
+      },
+      "0.2.1.1.0.0.3::Veja o diagnóstico e siga a recomendação.": {
+        "texts": [
+          "Veja o diagnóstico e siga a recomendação"
+        ]
+      },
+      "0.2.1.1.0.0.2::Clique na sessão em laranja.": {
+        "texts": [
+          "Clique na sessão em laranja"
+        ]
+      },
+      "0.2.1.1.1.0.3::Nenhuma ação necessária.": {
+        "texts": [
+          "Nenhuma ação necessária"
+        ]
+      },
+      "0.2.4.1::Siga o atendimento normalmente.": {
+        "texts": [
+          "Siga o atendimento normalmente"
+        ]
+      }
+    },
+    "slide-06": {
+      "0.2.1.0.1.0::Quando não há dados, abra chamado": {
+        "texts": [
+          "Jornada do Cooperado sem registros"
+        ]
+      },
+      "0.2.1.1.0.0.3::Oriente o primeiro acesso.": {
+        "texts": [
+          "Oriente o uso do Aplicativo"
+        ]
+      },
+      "0.2.4.1::Sem histórico no app: comece pela orientação.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.4.0.1::Primeiro acesso": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.1.1.0.3::Recomendação: Abrir Chamado.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.4.1::Sem dados para diagnóstico? A TI assume daqui.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.1.1.0.2::Dados insuficientes para diagnóstico.": {
+        "texts": [
+          "Dados insuficientes para diagnóstico"
+        ]
+      }
+    },
+    "slide-07": {
+      "0.2.0.1.3.0.3::Os logs viram status na Jornada.": {
+        "texts": [
+          "Os logs viram status na Jornada do Cooperado"
+        ]
+      },
+      "0.2.0.1.1.0.3::Ele usa o app Barracred.": {
+        "texts": [
+          "Ele usa o app Barracred"
+        ]
+      },
+      "0.2.0.1.2.0.3::Cada passo vira um registro.": {
+        "texts": [
+          "Cada passo vira um registro"
+        ]
+      }
+    },
+    "slide-08": {
+      "0.2.1.0.1.0.0::em qualquer sessão": {
+        "texts": [
+          "em qualquer cenário"
+        ]
+      },
+      "0.2.1.1.0.1.0.1::Viu algo estranho? Registre na hora.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.1.0.0.0.1.0::Abrir Chamado": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.1.0.0.0.1::em toda sessão.": {
+        "texts": [
+          ""
+        ]
+      },
+      "box::0.2.3.0": {
+        "dy": 169,
+        "dx": -1102
+      },
+      "box::0.2.1.2.0": {
+        "dy": 176,
+        "dx": 47
+      },
+      "box::0.2.4.0": {
+        "dy": 135,
+        "dx": -1102
+      },
+      "box::0.2.5.0": {
+        "dx": -1102,
+        "dy": 95
+      }
+    },
+    "slide-09": {
+      "0.2.0.1.1.0.1.1.1::a observação com detalhes.": {
+        "texts": [
+          "Se necessário, inclua uma observação"
+        ]
+      },
+      "0.2.0.1.2.0.1.1.1::e pronto: chamado aberto.": {
+        "texts": [
+          "Pronto: Chamado aberto"
+        ]
+      },
+      "0.2.0.0.1.0::Mais detalhe = solução mais rápida": {
+        "texts": [
+          "Mais detalhes = Solução mais ágil"
+        ]
+      },
+      "0.2.0.1.0.0.1.1.1::em “Abrir Chamado”.": {
+        "texts": [
+          "em “Abrir Chamado”"
+        ]
+      }
+    },
+    "slide-10": {
+      "0.2.1.1.0.1.0.1::o número do chamado.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.0.1.0.0::Chamado aberto.": {
+        "texts": [
+          "Chamado aberto!"
+        ]
+      },
+      "0.2.1.1.0.0.0.1::Confirmação chega logo após a criação.": {
+        "texts": [
+          "Confirmação chega logo após a criação e a cada iteração"
+        ]
+      },
+      "0.2.1.1.0.1.0.1.0::Guarde": {
+        "texts": [
+          "Chamado registrado"
+        ]
+      }
+    },
+    "slide-11": {
+      "0.0.2.2.0::Seu pedido para a TI, com prazo e rastreio.": {
+        "texts": [
+          "Nossa ferramenta de Help Desk"
+        ]
+      }
+    },
+    "slide-12": {
+      "0.2.0.1.0.0.1.0.1::Único ponto para pedir ajuda à TI.": {
+        "texts": [
+          "Unificação de registros"
+        ]
+      },
+      "0.2.0.1.0.0.1.1.1::Todo pedido vira um chamado.": {
+        "texts": [
+          "Todo pedido vira um chamado"
+        ]
+      },
+      "0.2.0.1.1.0.1.0.1::Prazo combinado para resolver o chamado.": {
+        "texts": [
+          "Prazo acordado para resolver o chamado"
+        ]
+      },
+      "0.2.0.1.1.0.1.1.1::Acordo interno entre áreas para cumprir o prazo.": {
+        "texts": [
+          "Acordo interno entre áreas para entregar o resultado"
+        ]
+      }
+    },
+    "slide-14": {
+      "0.2.1.0.1.0.0::Caixa do Help": {
+        "texts": [
+          "BWS_ Help"
+        ]
+      },
+      "0.2.1.0.1.0::Conheça a": {
+        "texts": [
+          "Conheça o"
+        ]
+      },
+      "0.2.1.1.0.0.2.1::Seus chamados por status.": {
+        "texts": [
+          "Seus chamados por status"
+        ]
+      },
+      "0.2.1.1.1.0.2.1::Com prioridade e status.": {
+        "texts": [
+          "Com prioridade e status"
+        ]
+      },
+      "0.2.1.1.2.0.2.1::Abra um pedido em segundos.": {
+        "texts": [
+          "Abra um pedido em segundos"
+        ]
+      },
+      "0.2.1.1.3.0.2.1::Encontre qualquer chamado.": {
+        "texts": [
+          "Encontre qualquer chamado"
+        ]
+      }
+    },
+    "slide-15": {
+      "0.2.1.1.1.0.2.0::Categoria": {
+        "texts": [
+          "Tipo e Categoria"
+        ]
+      },
+      "0.2.1.1.1.0.2.1::Escolha o assunto certo.": {
+        "texts": [
+          "Escolha o assunto pertinente"
+        ]
+      },
+      "0.2.1.1.2.0.2.1::Descreva e anexe prints.": {
+        "texts": [
+          "Descreva a sua solicitação"
+        ]
+      },
+      "0.2.1.1.3.0.2.1::Confirme o envio.": {
+        "texts": [
+          "Confirme o envio"
+        ]
+      },
+      "0.2.1.1.0.0.2.1::Clique em “+ Novo chamado”.": {
+        "texts": [
+          "Clique em “+ Novo chamado”"
+        ]
+      }
+    },
+    "slide-16": {
+      "0.2.1.0.1.0::Aberto?": {
+        "texts": [
+          "Chamado Aberto?"
+        ]
+      },
+      "0.2.1.0.1.0.0::O e‑mail confirma.": {
+        "texts": [
+          "O e‑mail confirma"
+        ]
+      },
+      "0.2.1.1.0.0.0.1::E‑mail automático na abertura.": {
+        "texts": [
+          "E‑mail automático na abertura"
+        ]
+      },
+      "0.2.1.1.0.1.0.1::Traz número e categoria do chamado.": {
+        "texts": [
+          "Traz número e categoria do chamado"
+        ]
+      }
+    },
+    "slide-17": {
+      "0.2.1.2.0.2.0.1.0::Prazo": {
+        "texts": [
+          "Métricas"
+        ]
+      },
+      "0.2.1.2.0.2.0.1::do SLA.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.0.1.0.0::precisar perguntar": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.1.0.1.0::Acompanhe sem": {
+        "texts": [
+          "Transparência"
+        ]
+      },
+      "0.2.1.1.0.0::BWS_HELP": {
+        "texts": [
+          "BWS_Help"
+        ]
+      },
+      "0.2.1.2.0.0.0.1::atual do chamado.": {
+        "texts": [
+          "atual do chamado"
+        ]
+      },
+      "0.2.1.2.0.1.0.1::de respostas.": {
+        "texts": [
+          "de iterações"
+        ]
+      }
+    },
+    "slide-18": {
+      "0.2.0.1.1.0.1.0.1::Registrado, aguardando triagem.": {
+        "texts": [
+          "Registrado, aguardando iteração"
+        ]
+      },
+      "0.2.0.1.1.1.1.0.1::A TI já está trabalhando.": {
+        "texts": [
+          "Chamado em atuação"
+        ]
+      },
+      "0.2.0.1.1.2.1.0.1::Falta uma informação sua.": {
+        "texts": [
+          "Aguardando sua resposta"
+        ]
+      },
+      "0.2.0.1.1.2.1.0.0::Aguardando você": {
+        "color": "#7809b3"
+      },
+      "0.2.0.1.1.3.1.0.1::Solução entregue. Avalie!": {
+        "texts": [
+          "Solução entregue, Avalie!"
+        ]
+      }
+    },
+    "slide-19": {
+      "0.2.1.0.1.0.0::o atendimento": {
+        "texts": [
+          "nossos processos"
+        ]
+      },
+      "0.2.1.1.0.0.0.1::Ao fechar o chamado, avalie.": {
+        "texts": [
+          "Ao fechar o chamado, avalie"
+        ]
+      },
+      "0.2.1.1.0.1.0.1::Leva segundos.": {
+        "texts": [
+          "Leva segundos"
+        ]
+      },
+      "0.2.1.1.0.2.0.1::Sua nota orienta melhorias.": {
+        "texts": [
+          "Sua nota orienta melhorias"
+        ]
+      },
+      "0.2.3.0.1.1::Toda nota conta": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.3.0.1.0::Avalie sempre": {
+        "texts": [
+          "\nAvalie sempre"
+        ],
+        "fontSize": 36,
+        "color": "#0B5D3B"
+      }
+    },
+    "slide-20": {
+      "0.2.0.1.0::E aí, nunca mais usarei o Teams para falar com a TI?": {
+        "texts": [
+          "E AI, Agora é só CHAMADO para falar com a TI?"
+        ]
+      },
+      "0.2.0.2.0.0::Mas depois do chamado.": {
+        "texts": [
+          "Não, não..."
+        ]
+      },
+      "0.2.0.2.0::Usa, sim.": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.0.4.0.1.1.0::1º": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.0.4.0.2.2::Teams só se for prioridade": {
+        "texts": [
+          "Se necessário, utilize outros meios"
+        ]
+      },
+      "0.2.0.4.0.2.2.0::2º": {
+        "texts": [
+          ""
+        ]
+      }
+    },
+    "slide-21": {
+      "0.2.0.1.0.0.2::Sempre primeiro": {
+        "texts": [
+          "BWS_Help"
+        ]
+      },
+      "0.2.0.1.0.0.4::Todo pedido começa aqui.": {
+        "texts": [
+          "Toda solicitação começa aqui"
+        ]
+      },
+      "0.2.0.1.1.0.2::Só prioridade": {
+        "texts": [
+          "Comunicação"
+        ]
+      },
+      "0.2.0.1.1.0.3::Teams": {
+        "texts": [
+          "Meios"
+        ]
+      },
+      "0.2.0.1.1.0.4::Casos prioritários. O resto segue a fila.": {
+        "texts": [
+          "Casos prioritários. Os demais seguem o fluxo normal"
+        ]
+      },
+      "0.2.0.1.2.0.4::Arquivos e planilhas pesadas.": {
+        "texts": [
+          "Arquivos e planilhas"
+        ]
+      },
+      "0.2.0.2.0.0::Anexo pesado no chat": {
+        "texts": [
+          ""
+        ]
+      },
+      "0.2.0.2.1.0::Cooperar para transformar vidas do nosso cooperado.": {
+        "texts": [
+          "Cooperar para transformar vidas"
+        ]
+      }
+    },
+    "slide-13": {
+      "0.2.0.3.0::App Barracred lidera: 36 de 180 chamados (20%).": {
+        "texts": [
+          "App Barracred lidera: 36 de 180 chamados (20%)"
+        ]
+      }
+    }
+  },
+  "cards": {}
+}

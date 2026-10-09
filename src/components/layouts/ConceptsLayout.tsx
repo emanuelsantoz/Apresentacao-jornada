@@ -25,7 +25,7 @@ function Funnel() {
           />
         </g>
       ))}
-      <rect x={440} y={55} width={200} height={60} rx={30} fill="var(--c-green-600)" />
+      <rect x={440} y={55} width={200} height={60} rx={8} fill="var(--ws-action)" />
       <text x={540} y={94} textAnchor="middle" fontSize={24} fontWeight={700} fill="#fff" fontFamily="var(--font-brand)">1 chamado</text>
     </svg>
   );
@@ -35,12 +35,12 @@ function Timeline() {
   const { print } = useSlideState();
   return (
     <svg viewBox="0 0 640 170" width="100%" height={170} aria-hidden>
-      <rect x={10} y={70} width={620} height={26} rx={13} fill="rgba(255,255,255,0.12)" />
-      <motion.rect x={10} y={70} height={26} rx={13} fill="var(--c-lime)" initial={print ? false : { width: 0 }} animate={{ width: 400 }} transition={{ duration: 1.2, delay: 0.4 }} />
+      <rect x={10} y={70} width={620} height={26} rx={6} fill="var(--ws-chrome-2)" />
+      <motion.rect x={10} y={70} height={26} rx={6} fill="var(--ws-action)" initial={print ? false : { width: 0 }} animate={{ width: 400 }} transition={{ duration: 1.2, delay: 0.4 }} />
       <circle cx={18} cy={83} r={16} fill="#fff" />
       <text x={10} y={140} fontSize={22} fill="rgba(255,255,255,.75)" fontFamily="var(--font-brand)">Abertura</text>
-      <line x1={600} y1={46} x2={600} y2={120} stroke="var(--c-gold)" strokeWidth={4} strokeDasharray="6 6" />
-      <text x={630} y={140} textAnchor="end" fontSize={22} fill="var(--c-gold)" fontWeight={700} fontFamily="var(--font-brand)">Prazo</text>
+      <line x1={600} y1={46} x2={600} y2={120} stroke="var(--ws-selection)" strokeWidth={4} strokeDasharray="6 6" />
+      <text x={630} y={140} textAnchor="end" fontSize={22} fill="var(--ws-selection)" fontWeight={700} fontFamily="var(--font-brand)">Prazo</text>
       <text x={10} y={36} fontSize={22} fill="rgba(255,255,255,.75)" fontFamily="var(--font-brand)">Tempo combinado para resolver</text>
     </svg>
   );
@@ -52,7 +52,7 @@ function ConceptCard({ c, i }: { c: Concept; i: number }) {
   return (
     <Reveal at={i} from="scale" delay={i === 0 ? 0.2 : 0} style={{ flex: 1, perspective: 1600 }}>
       <motion.div
-        animate={{ rotateY: shown ? 0 : -18 }}
+        animate={{ opacity: shown ? 1 : 0 }}
         transition={{ duration: 0.6 }}
         style={{
           height: '100%', borderRadius: 'var(--radius-lg)', padding: '44px 48px', display: 'flex', flexDirection: 'column',
@@ -62,14 +62,14 @@ function ConceptCard({ c, i }: { c: Concept; i: number }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
           <IconBadge icon={c.icon} tone={dark ? 'lime' : 'green'} size={80} />
           <div>
-            <div style={{ fontSize: 'var(--fs-caption)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600, color: dark ? 'var(--c-lime)' : 'var(--c-green-600)' }}>{c.kicker}</div>
-            <div style={{ fontSize: 56, fontWeight: 700, letterSpacing: '-0.02em', color: dark ? '#fff' : 'var(--c-green-900)' }}>{c.name}</div>
+            <div style={{ fontSize: 'var(--fs-caption)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600, color: dark ? 'var(--ws-selection)' : 'var(--ws-action)' }}>{c.kicker}</div>
+            <div style={{ fontSize: 56, fontWeight: 700, letterSpacing: '-0.02em', color: dark ? '#fff' : 'var(--ws-text)' }}>{c.name}</div>
           </div>
         </div>
         <div style={{ marginTop: 34, display: 'flex', flexDirection: 'column', gap: 22 }}>
           {c.defs.map((d) => (
             <div key={d.term} style={{ display: 'flex', gap: 18, alignItems: 'baseline' }}>
-              <span style={{ flex: 'none', minWidth: 96, fontSize: 'var(--fs-label)', fontWeight: 700, padding: '6px 14px', borderRadius: 10, textAlign: 'center', background: dark ? 'rgba(175,191,48,0.18)' : 'var(--c-success-tint)', color: dark ? 'var(--c-lime)' : 'var(--c-green-700)' }}>{d.term}</span>
+              <span style={{ flex: 'none', minWidth: 96, fontSize: 'var(--fs-label)', fontWeight: 700, padding: '6px 14px', borderRadius: 6, textAlign: 'center', background: dark ? 'var(--ws-chrome-2)' : 'var(--ws-selection)', color: dark ? 'var(--ws-selection)' : 'var(--ws-primary)' }}>{d.term}</span>
               <span style={{ fontSize: 'var(--fs-body)', lineHeight: 1.3 }}>{d.text}</span>
             </div>
           ))}

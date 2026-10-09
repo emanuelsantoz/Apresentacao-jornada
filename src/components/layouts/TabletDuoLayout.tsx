@@ -2,7 +2,6 @@ import type { LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Tablet } from '../devices/Devices';
 import { Screen, type ScreenSpec } from '../devices/Screen';
-import { Aurora } from '../stage/Shapes';
 import { Reveal } from '../ui/Reveal';
 import { IconBadge } from '../ui/IconBadge';
 import { Title } from '../ui/Title';
@@ -18,8 +17,8 @@ export interface DuoScreen {
   icon: LucideIcon;
   bullets: string[];
   screen: ScreenSpec;
-  /** Caixa flutuante (z-20) que destaca a informação principal desta tela. */
-  callout: { icon: LucideIcon; title: string; text: string };
+  /** Caixa flutuante (z-20) que destaca a informação principal desta tela. Sem título e texto, não aparece. */
+  callout?: { icon: LucideIcon; title: string; text: string };
   /** Ponto pulsante sobre a tela, em % da área da tela do tablet. */
   spot?: { x: number; y: number };
 }
@@ -51,8 +50,7 @@ export function TabletDuoLayout({ d }: { d: TabletDuoData }) {
   return (
     <>
       {/* painel escuro dos dispositivos (ref. 2) */}
-      <div style={{ position: 'absolute', left: 780, top: 0, right: 0, bottom: 0, borderRadius: '56px 0 0 56px', overflow: 'hidden', background: 'var(--c-green-950)', zIndex: 0 }}>
-        <Aurora variant={1} />
+      <div style={{ position: 'absolute', left: 780, top: 0, right: 0, bottom: 0, borderRadius: '16px 0 0 16px', overflow: 'hidden', background: 'var(--c-green-950)', zIndex: 0 }}>
       </div>
 
       <div style={{ position: 'absolute', left: 96, top: 170, width: 620 }}>
@@ -66,15 +64,15 @@ export function TabletDuoLayout({ d }: { d: TabletDuoData }) {
                   animate={{ opacity: on ? 1 : 0.5 }}
                   style={{
                     position: 'relative', padding: '28px 30px 26px 36px', borderRadius: 'var(--radius-md)', overflow: 'hidden',
-                    background: on ? '#fff' : 'transparent', border: on ? '2px solid transparent' : '2px solid var(--c-line)',
+                    background: on ? '#fff' : 'transparent', border: '1px solid var(--ws-border)',
                     boxShadow: on ? 'var(--shadow-card)' : 'none',
                   }}
                 >
-                  <span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 8, background: toneColor[s.tone] }} />
+                  <span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: on ? 'var(--ws-action)' : 'transparent' }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 14 }}>
                     <IconBadge icon={s.icon} tone={toneBadge[s.tone]} size={56} />
                     <span style={{ fontSize: 'var(--fs-label)', fontWeight: 600, color: toneColor[s.tone], textTransform: 'uppercase', letterSpacing: '.08em' }}>{s.tag}</span>
-                    <span style={{ fontSize: 36, fontWeight: 700, color: 'var(--c-green-900)' }}>{s.name}</span>
+                    <span style={{ fontSize: 36, fontWeight: 700, color: 'var(--ws-text)' }}>{s.name}</span>
                   </div>
                   {s.bullets.map((b) => (
                     <p key={b} style={{ margin: '8px 0 0 74px', fontSize: 27, lineHeight: 1.3, color: 'var(--c-ink)' }}>{b}</p>
@@ -118,22 +116,22 @@ export function TabletDuoLayout({ d }: { d: TabletDuoData }) {
       })}
 
       {/* caixa de destaque sobreposta (z-20), cruzando painel e tablet */}
-      <motion.div
+      {cur.callout && (cur.callout.title || cur.callout.text) && <motion.div
         key={`callout-${active}`}
         style={{
           position: 'absolute', left: 740, top: 790 - SCREEN_INSET, width: 470, zIndex: 20, background: '#fff', borderRadius: 'var(--radius-md)',
-          padding: '26px 28px', boxShadow: '0 30px 60px -18px rgba(5,20,12,0.55)', borderTop: `8px solid ${toneColor[cur.tone]}`,
+          padding: '26px 28px', boxShadow: 'var(--shadow-pop)', border: '1px solid var(--ws-border)',
         }}
         initial={print ? false : { opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.35, ease: motionTokens.ease }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: cur.callout.text ? 10 : 0 }}>
           <IconBadge icon={cur.callout.icon} tone={toneBadge[cur.tone]} size={52} />
-          <span style={{ fontSize: 30, fontWeight: 700, color: 'var(--c-green-900)' }}>{cur.callout.title}</span>
+          <span style={{ fontSize: 30, fontWeight: 700, color: 'var(--ws-text)' }}>{cur.callout.title}</span>
         </div>
-        <p style={{ margin: 0, fontSize: 25, lineHeight: 1.3, color: 'var(--c-ink-soft)' }}>{cur.callout.text}</p>
-      </motion.div>
+        {cur.callout.text && <p style={{ margin: 0, fontSize: 25, lineHeight: 1.3, color: 'var(--c-ink-soft)' }}>{cur.callout.text}</p>}
+      </motion.div>}
     </>
   );
 }

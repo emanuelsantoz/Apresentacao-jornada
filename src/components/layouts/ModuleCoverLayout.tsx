@@ -17,7 +17,7 @@ export function ModuleCoverLayout({ d }: { d: ModuleCoverData }) {
       <motion.div
         aria-hidden
         className="num"
-        style={{ position: 'absolute', right: -110, top: 60, fontSize: 900, fontWeight: 700, lineHeight: 0.9, letterSpacing: '-0.06em', color: 'transparent', WebkitTextStroke: '4px rgba(175,191,48,0.45)' }}
+        style={{ position: 'absolute', right: -110, top: 60, fontSize: 900, fontWeight: 700, lineHeight: 0.9, letterSpacing: '-0.06em', color: 'transparent', WebkitTextStroke: '3px rgba(232,245,233,0.16)' }}
         initial={print ? false : { opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
@@ -28,7 +28,7 @@ export function ModuleCoverLayout({ d }: { d: ModuleCoverData }) {
         <Reveal><Chip tone="lime">{d.chip}</Chip></Reveal>
         <Reveal delay={0.1}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 40, marginTop: 40 }}>
-            <span style={{ width: 150, height: 150, borderRadius: 44, border: '3px solid var(--c-lime)', display: 'grid', placeItems: 'center', color: 'var(--c-lime)' }}><Icon size={84} strokeWidth={1.5} /></span>
+            <span style={{ width: 150, height: 150, borderRadius: 12, background: 'var(--ws-action)', border: 'none', display: 'grid', placeItems: 'center', color: '#fff' }}><Icon size={84} strokeWidth={1.5} /></span>
             <h1 style={{ margin: 0, fontSize: 168, lineHeight: 1, letterSpacing: '-0.04em', fontWeight: 700 }}>{d.title}</h1>
           </div>
         </Reveal>

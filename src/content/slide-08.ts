@@ -11,10 +11,10 @@ export const meta: SlideMeta = {
 
 export const data: DeviceFocusData = {
   eyebrow: 'Chamados via Jornada',
-  title: ['Chamado a um clique,', 'em qualquer sessão'],
+  title: ['Chamado a um clique,', 'em qualquer cenário'],
   bullets: [
-    { icon: TicketPlus, strong: 'Abrir Chamado', text: 'em toda sessão.' },
-    { icon: MousePointerClick, text: 'Viu algo estranho? Registre na hora.' },
+    { icon: TicketPlus, text: '' },
+    { icon: MousePointerClick, text: '' },
   ],
   chip: { text: 'Erro · Alerta · Sucesso', icon: Zap },
   device: 'tablet',

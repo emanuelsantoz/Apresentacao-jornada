@@ -23,5 +23,5 @@ export const data: MetricsData = {
   ],
   evolucao: { title: 'Evolução de chamados', data: m.evolucao.map((e) => ({ label: e.dia, value: e.total })) },
   tipos: { title: 'Chamados por tipo', data: m.tipos.map((t) => ({ label: t.tipo, value: t.total })) },
-  insight: `${r.topo.tipo} lidera: ${r.topo.total} de ${r.total} chamados (${r.topoPct}%).`,
+  insight: '',
 };

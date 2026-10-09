@@ -15,15 +15,15 @@ export const data: ConceptsData = {
     {
       icon: Headset, kicker: 'O que é', name: 'Help Desk', visual: 'funnel',
       defs: [
-        { term: 'Canal', text: 'Único ponto para pedir ajuda à TI.' },
-        { term: 'Registro', text: 'Todo pedido vira um chamado.' },
+        { term: 'Canal', text: 'Unificação de registros' },
+        { term: 'Registro', text: 'Todo pedido vira um chamado' },
       ],
     },
     {
       icon: Timer, kicker: 'O que é', name: 'SLA e OLA', visual: 'timeline',
       defs: [
-        { term: 'SLA', text: 'Prazo combinado para resolver o chamado.' },
-        { term: 'OLA', text: 'Acordo interno entre áreas para cumprir o prazo.' },
+        { term: 'SLA', text: 'Prazo acordado para resolver o chamado' },
+        { term: 'OLA', text: 'Acordo interno entre áreas para entregar o resultado' },
       ],
     },
   ],

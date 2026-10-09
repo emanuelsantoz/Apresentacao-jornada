@@ -1,6 +1,6 @@
 # Jornada do Cooperado & BWS_HELP — Apresentação
 
-Treinamento interno (21 slides) para Consultoria e Atendimento. Projeto **React + Vite + TypeScript**, 100% local.
+Treinamento interno (21 slides) para Consultoria e Atendimento. Projeto **React + Vite + TypeScript**, 100% local, no design system **Barracred WorkSpace** ([DESIGN-TOKENS](DESIGN-TOKENS.md)).
 
 ## Rodar
 

@@ -13,15 +13,15 @@ export function Hud({ index, total, step, steps, idle, prev, next, overview, not
   const btn = { all: 'unset', cursor: 'pointer', width: 40, height: 40, display: 'grid', placeItems: 'center', borderRadius: 10, color: '#fff' } as const;
   return (
     <div className="no-print" data-editor-ui>
-      <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, height: 4, background: 'rgba(255,255,255,0.08)', zIndex: 40 }}>
-        <motion.div style={{ height: '100%', background: 'var(--c-lime)', originX: 0 }} animate={{ scaleX: progress }} transition={{ duration: 0.4 }} />
+      <div style={{ position: 'fixed', left: 0, right: 0, bottom: 0, height: 4, background: 'var(--ws-border)', zIndex: 40 }}>
+        <motion.div style={{ height: '100%', background: 'var(--ws-action)', originX: 0 }} animate={{ scaleX: progress }} transition={{ duration: 0.4 }} />
       </div>
       <div style={{
         position: 'fixed', right: 18, top: editing ? 'auto' : 16, bottom: editing ? 16 : 'auto', zIndex: 66, display: 'flex', gap: 4, padding: 4, borderRadius: 14,
-        background: 'rgba(6,24,14,0.7)', backdropFilter: 'blur(6px)', opacity: idle && !editing ? 0 : 1, transition: 'opacity .4s',
+        background: 'var(--ws-chrome)', border: '1px solid var(--ws-chrome-2)', opacity: idle && !editing ? 0 : 1, transition: 'opacity .4s',
       }}>
         <button
-          style={{ ...btn, width: 'auto', padding: '0 12px', gap: 6, display: 'inline-flex', alignItems: 'center', fontSize: 13, fontWeight: 600, background: editing ? 'var(--c-lime)' : 'rgba(255,255,255,0.1)', color: editing ? 'var(--c-green-900)' : '#fff' }}
+          style={{ ...btn, width: 'auto', padding: '0 12px', gap: 6, display: 'inline-flex', alignItems: 'center', fontSize: 13, fontWeight: 600, background: editing ? 'var(--ws-selection)' : 'var(--ws-action)', color: editing ? 'var(--ws-primary)' : '#fff' }}
           onClick={toggleEdit}
           title="Alternar modo edição / apresentação (E)"
         >
