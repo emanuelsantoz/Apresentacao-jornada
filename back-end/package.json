@@ -1,0 +1,23 @@
+{
+  "name": "barracred-apresentacao-backend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "API Hono (Vercel) que guarda o edicoes.json da apresentação no Vercel Blob.",
+  "scripts": {
+    "dev": "tsx watch src/dev.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx test/crud.test.ts",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/blob": "^1.1.1",
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@hono/node-server": "^1.13.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
