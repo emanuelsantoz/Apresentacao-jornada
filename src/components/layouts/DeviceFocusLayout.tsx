@@ -33,7 +33,8 @@ export interface DeviceFocusData {
   device: 'laptop' | 'tablet';
   screen: ScreenSpec;
   floats?: FloatCard[];
-  chip?: { text: string; icon?: LucideIcon };
+  /** `y`: posição fixa (px do palco, coluna da esquerda); sem `y` o selo segue o fluxo, abaixo da lista. */
+  chip?: { text: string; icon?: LucideIcon; y?: number };
   /** onde fica o rótulo “Onde” (breadcrumb), opcional */
   where?: string[];
 }
@@ -61,10 +62,12 @@ export function DeviceFocusLayout({ d }: { d: DeviceFocusData }) {
             </div>
           </Reveal>
         )}
-        <div style={{ marginTop: 46 }}>
-          <BulletList items={d.bullets} />
-        </div>
-        {d.chip && (
+        {d.bullets.length > 0 && (
+          <div style={{ marginTop: 46 }}>
+            <BulletList items={d.bullets} />
+          </div>
+        )}
+        {d.chip && d.chip.y === undefined && (
           <Reveal delay={0.5} style={{ marginTop: 44 }}>
             <Chip tone="lime">{d.chip.icon && <d.chip.icon size={24} />}{d.chip.text}</Chip>
           </Reveal>
@@ -83,6 +86,12 @@ export function DeviceFocusLayout({ d }: { d: DeviceFocusData }) {
           <Tablet width={820}><Screen spec={d.screen} /></Tablet>
         )}
       </motion.div>
+
+      {d.chip && d.chip.y !== undefined && (
+        <Reveal delay={0.5} style={{ position: 'absolute', left: 96, top: d.chip.y, zIndex: 3 }}>
+          <Chip tone="lime">{d.chip.icon && <d.chip.icon size={24} />}{d.chip.text}</Chip>
+        </Reveal>
+      )}
 
       {d.floats?.map((f, i) => (
         <Reveal key={i} at={f.at ?? 0} delay={0.45 + i * 0.12} from={f.drop ? 'down' : 'scale'} style={{ position: 'absolute', left: f.x, top: f.y, width: f.w ?? 420, zIndex: 20 }}>

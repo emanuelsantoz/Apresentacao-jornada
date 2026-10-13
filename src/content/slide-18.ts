@@ -14,7 +14,7 @@ export const data: StatusData = {
   items: [
     { name: 'Aberto', icon: CircleDot, tone: 'info', text: 'Registrado, aguardando triagem.', who: 'Com a TI' },
     { name: 'Em atendimento', icon: Loader, tone: 'success', text: 'A TI já está trabalhando.', who: 'Com a TI' },
-    { name: 'Aguardando você', icon: UserRoundCheck, tone: 'alert', text: 'Falta uma informação sua.', who: 'Com você' },
+    { name: 'Aguardando você', icon: UserRoundCheck, tone: 'returned', text: 'Falta uma informação sua.', who: 'Com você' },
     { name: 'Resolvido', icon: CheckCircle2, tone: 'green', text: 'Solução entregue. Avalie!', who: 'Concluído' },
   ],
 };

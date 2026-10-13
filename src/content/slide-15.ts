@@ -14,9 +14,9 @@ export const data: AnnotatedData = {
   title: ['Abra um chamado', 'em 4 passos'],
   screen: prints.helpNovo,
   items: [
-    { n: '1', icon: Plus, title: 'Novo chamado', text: 'Clique em “+ Novo chamado”.', pin: { x: 14, y: 6 } },
-    { n: '2', icon: LayoutGrid, title: 'Categoria', text: 'Escolha o assunto certo.', pin: { x: 12, y: 24 } },
-    { n: '3', icon: Paperclip, title: 'Detalhe', text: 'Descreva e anexe prints.', pin: { x: 12, y: 47 } },
-    { n: '4', icon: Send, title: 'Enviar', text: 'Confirme o envio.', pin: { x: 67, y: 84 } },
+    { n: '1', icon: Plus, title: 'Novo chamado', text: 'Clique em “+ Novo chamado”.', pin: { x: 33, y: 6 } },
+    { n: '2', icon: LayoutGrid, title: 'Categoria', text: 'Escolha o assunto certo.', pin: { x: 50, y: 37 } },
+    { n: '3', icon: Paperclip, title: 'Detalhe', text: 'Descreva e anexe prints.', pin: { x: 79, y: 31 } },
+    { n: '4', icon: Send, title: 'Enviar', text: 'Confirme o envio.', pin: { x: 89, y: 65 } },
   ],
 };

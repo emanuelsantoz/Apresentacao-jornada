@@ -1,7 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 import type { CSSProperties } from 'react';
 
-type Tone = 'green' | 'lime' | 'dark' | 'alert' | 'success' | 'danger' | 'info' | 'glass' | 'white';
+type Tone = 'green' | 'lime' | 'dark' | 'alert' | 'success' | 'danger' | 'info' | 'returned' | 'glass' | 'white';
 
 const tones: Record<Tone, CSSProperties> = {
   green: { background: 'var(--ws-action)', color: '#fff' },
@@ -11,6 +11,7 @@ const tones: Record<Tone, CSSProperties> = {
   success: { background: 'var(--c-success-tint)', color: 'var(--c-success)' },
   danger: { background: 'var(--c-danger-tint)', color: 'var(--c-danger)' },
   info: { background: 'var(--c-info-tint)', color: 'var(--c-info)' },
+  returned: { background: 'var(--c-returned-tint)', color: 'var(--c-returned)' },
   glass: { background: 'var(--ws-chrome-2)', color: 'var(--ws-selection)' }, // superfície sólida sobre o chrome
   white: { background: '#fff', color: 'var(--ws-action)', border: '1px solid var(--ws-border)' },
 };

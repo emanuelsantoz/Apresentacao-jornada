@@ -5,12 +5,12 @@ import { Reveal } from '../ui/Reveal';
 import { Title, Hl } from '../ui/Title';
 import { useSlideState } from '../../hooks/useSlideState';
 
-type Tone = 'info' | 'success' | 'alert' | 'green';
+type Tone = 'info' | 'success' | 'alert' | 'green' | 'returned';
 export interface StatusItem { name: string; icon: LucideIcon; tone: Tone; text: string; who: string }
 export interface StatusData { eyebrow: string; title: [string, string]; items: StatusItem[] }
 
-const tints: Record<Tone, string> = { info: 'var(--c-info-tint)', success: 'var(--c-success-tint)', alert: 'var(--c-alert-tint)', green: 'var(--c-success-tint)' };
-const text: Record<Tone, string> = { info: 'var(--c-info)', success: 'var(--ws-primary)', alert: 'var(--c-alert)', green: 'var(--ws-chrome)' };
+const tints: Record<Tone, string> = { info: 'var(--c-info-tint)', success: 'var(--c-success-tint)', alert: 'var(--c-alert-tint)', green: 'var(--c-success-tint)', returned: 'var(--c-returned-tint)' };
+const text: Record<Tone, string> = { info: 'var(--c-info)', success: 'var(--ws-primary)', alert: 'var(--c-alert)', green: 'var(--ws-chrome)', returned: 'var(--c-returned)' };
 
 // Linha do tempo da animação (segundos)
 const FILL_START = 0.4; // a linha começa a crescer

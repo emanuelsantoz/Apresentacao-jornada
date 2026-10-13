@@ -49,6 +49,8 @@
   --c-danger-tint: #fee2e2;
   --c-info: #1d4ed8;
   --c-info-tint: #dbeafe;
+  --c-returned: #1a5b39; /* Devolvido: lilás + texto verde-escuro (como no BWS) */
+  --c-returned-tint: #e9d5ff;
 
   /* BWS (mockups) = mesmos tokens */
   --bws-chrome: var(--ws-chrome);

@@ -1,3 +1,4 @@
+import { usePrint } from '../../hooks/usePrint';
 import { BwsScreen, MenuStrip, type ScreenKey } from './BwsScreens';
 import { PrintSlot } from './PrintSlot';
 
@@ -24,12 +25,13 @@ export interface ScreenSpec {
 
 /** Conteúdo de tela de um mockup: print real (se houver) ou tela de exemplo. */
 export function Screen({ spec }: { spec: ScreenSpec }) {
+  const { src } = usePrint(spec.printId);
   const slot = (
     <PrintSlot id={spec.printId} label={spec.label} fit={spec.fit} position={spec.position} bg={spec.bg}>
       <BwsScreen screen={spec.fallback} emailSubject={spec.emailSubject} emailBody={spec.emailBody} emailBodyFull={spec.emailBodyFull} />
     </PrintSlot>
   );
-  if (!spec.menu) return slot;
+  if (!spec.menu || !src) return slot;
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex' }}>
       <MenuStrip />

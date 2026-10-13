@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle2, MousePointerClick, TicketPlus, XCircle, Zap } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, XCircle, Zap } from 'lucide-react';
 import type { DeviceFocusData } from '../components/layouts/DeviceFocusLayout';
 import type { SlideMeta } from '../types/slide';
 import { prints } from './prints';
@@ -12,16 +12,14 @@ export const meta: SlideMeta = {
 export const data: DeviceFocusData = {
   eyebrow: 'Chamados via Jornada',
   title: ['Chamado a um clique,', 'em qualquer cenário'],
-  bullets: [
-    { icon: TicketPlus, text: '' },
-    { icon: MousePointerClick, text: '' },
-  ],
-  chip: { text: 'Erro · Alerta · Sucesso', icon: Zap },
+  bullets: [],
+  // cards em pilha, alinhados à esquerda do título, com o selo logo abaixo
+  chip: { text: 'Erro · Alerta · Sucesso', icon: Zap, y: 800 },
   device: 'tablet',
   screen: prints.jornadaBotaoChamado,
   floats: [
-    { icon: XCircle, title: 'Erro', text: 'Abrir Chamado disponível', tone: 'danger', x: 1440, y: 300, w: 420 },
-    { icon: AlertTriangle, title: 'Alerta', text: 'Abrir Chamado disponível', tone: 'alert', x: 1440, y: 470, w: 420 },
-    { icon: CheckCircle2, title: 'Sucesso', text: 'Abrir Chamado disponível', tone: 'success', x: 1440, y: 640, w: 420 },
+    { icon: XCircle, title: 'Erro', text: 'Abrir Chamado disponível', tone: 'danger', x: 96, y: 400, w: 560 },
+    { icon: AlertTriangle, title: 'Alerta', text: 'Abrir Chamado disponível', tone: 'alert', x: 96, y: 532, w: 560 },
+    { icon: CheckCircle2, title: 'Sucesso', text: 'Abrir Chamado disponível', tone: 'success', x: 96, y: 664, w: 560 },
   ],
 };
