@@ -25,11 +25,11 @@ export function Deck({ slides }: { slides: SlideDef[] }) {
   const idle = useIdle(2000);
   const touchX = useRef<number | null>(null);
   const slide = slides[index];
-  const { editing, toggle: toggleEdit, setEditing } = useEditMode();
+  const { editing, locked, toggle: toggleEdit, setEditing } = useEditMode();
 
   useKeyboardNav({
     next, prev, total, goTo: (i) => { goTo(i); setOverview(false); },
-    toggleOverview: () => setOverview((o) => !o), toggleNotes: () => setNotes((n) => !n), toggleEdit,
+    toggleOverview: () => setOverview((o) => !o), toggleNotes: () => { if (!locked) setNotes((n) => !n); }, toggleEdit,
     closeOverlays: () => { setOverview(false); setNotes(false); },
   });
 
@@ -83,13 +83,13 @@ export function Deck({ slides }: { slides: SlideDef[] }) {
 
       <Hud
         index={index} total={total} step={step} steps={slide.steps ?? 0} idle={idle}
-        prev={prev} next={next} overview={() => setOverview(true)} notes={() => setNotes((n) => !n)}
-        editing={editing} toggleEdit={toggleEdit}
+        prev={prev} next={next} overview={() => setOverview(true)} notes={() => { if (!locked) setNotes((n) => !n); }}
+        editing={editing} locked={locked} toggleEdit={toggleEdit} slideNumber={index + 1}
       />
 
       {editing && !overview && (
         <>
-          <EditBar slideId={slide.id} onExit={() => setEditing(false)} />
+          <EditBar slideId={slide.id} slideNumber={index + 1} onExit={() => setEditing(false)} />
           <TextEditor />
           <Toast />
         </>

@@ -3,11 +3,12 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { edits, useEditsMeta } from './editsStore';
 import { CloudMenu } from './CloudMenu';
 import { notify } from './notify';
+import { ShareLink } from './ShareLink';
 
 const time = (t?: number) => (t ? new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '');
 
 /** Faixa do topo no modo edição: status do salvamento, histórico e ações. */
-export function EditBar({ slideId, onExit }: { slideId: string; onExit: () => void }) {
+export function EditBar({ slideId, slideNumber, onExit }: { slideId: string; slideNumber: number; onExit: () => void }) {
   const meta = useEditsMeta();
   const input = useRef<HTMLInputElement>(null);
   const [, tick] = useState(0);
@@ -57,6 +58,7 @@ export function EditBar({ slideId, onExit }: { slideId: string; onExit: () => vo
 
       <SaveStatus status={meta.status} savedAt={meta.savedAt} />
       <CloudMenu />
+      <ShareLink slideNumber={slideNumber} />
       <span style={{ opacity: 0.7 }}>
         <b>{here}</b> neste slide · <b>{total}</b> no total
       </span>
