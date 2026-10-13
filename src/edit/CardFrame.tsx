@@ -24,6 +24,9 @@ const MIN_H = 40;
 export function startDrag(e: { clientX: number; clientY: number }, t: CardTarget, handle: Handle, threshold = 3) {
   const rect = t.el.getBoundingClientRect();
   const ratio = rect.width / t.el.offsetWidth || 1; // px da janela por px do elemento (palco + transformações)
+  // `translate` age no espaço do pai: a escala do próprio elemento (ex.: marcador em destaque) não conta
+  const par = t.el.parentElement;
+  const moveRatio = par && par.offsetWidth ? par.getBoundingClientRect().width / par.offsetWidth || ratio : ratio;
   const w0 = t.el.offsetWidth;
   const h0 = t.el.offsetHeight;
   const card = t.kind === 'card' ? edits.card(t.slideId, t.key) : undefined;
@@ -55,8 +58,9 @@ export function startDrag(e: { clientX: number; clientY: number }, t: CardTarget
       sy = s.sy;
       setGuides(s.guides);
     } else setGuides([]);
-    const dx = Math.round(sx / ratio);
-    const dy = Math.round(sy / ratio);
+    const r = handle === 'move' && t.kind === 'box' ? moveRatio : ratio;
+    const dx = Math.round(sx / r);
+    const dy = Math.round(sy / r);
 
     if (handle === 'move') {
       if (card) {

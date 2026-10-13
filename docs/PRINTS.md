@@ -32,3 +32,7 @@ Catálogo no código: `src/content/prints.ts`.
 
 ## Logo
 A logo funciona igual: clique nela para enviar um PNG/SVG. Ids locais: `logo-fundo-claro` e `logo-fundo-escuro`. Arquivos permanentes: `public/brand/logo-verde.png` e `public/brand/logo-branco.png`.
+
+## Expandir a imagem
+Todo print real dentro de um notebook/tablet ganha um botão **⤢** no canto superior direito da tela. Ele abre a imagem inteira, maior, sobre o slide (Esc, **X** ou clique fora para fechar; as setas não trocam de slide enquanto estiver aberta). O botão não aparece no PDF nem na visão geral.
+No e-mail do slide 16 a imagem do notebook é um recorte (`prints/help-03-email-corpo.png`); ao expandir, abre a imagem completa (`prints/help-03-email-completo.png`).

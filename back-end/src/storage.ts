@@ -1,13 +1,13 @@
 import { BlobNotFoundError, del, head, put } from '@vercel/blob';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import type { AllEdits } from './types.js';
+import type { Stored } from './types.js';
 
 /** Caminho do arquivo no Blob. */
 export const BLOB_PATH = 'apresentacao/edicoes.json';
 
 export interface Storage {
-  read(): Promise<AllEdits | null>; // null = arquivo ainda não existe
-  write(data: AllEdits): Promise<void>;
+  read(): Promise<Stored | null>; // null = arquivo ainda não existe
+  write(data: Stored): Promise<void>;
   remove(): Promise<void>;
 }
 
@@ -19,7 +19,7 @@ export const blobStorage: Storage = {
       // ?v= muda a cada gravação e evita resposta velha do CDN
       const r = await fetch(`${meta.url}?v=${meta.uploadedAt.getTime()}`, { cache: 'no-store' });
       if (!r.ok) throw new Error(`Falha ao ler o Blob (${r.status})`);
-      return (await r.json()) as AllEdits;
+      return (await r.json()) as Stored;
     } catch (e) {
       if (e instanceof BlobNotFoundError) return null;
       throw e;
@@ -49,7 +49,7 @@ export function fileStorage(dir = '.dev-data'): Storage {
   const file = `${dir}/edicoes.json`;
   return {
     async read() {
-      try { return JSON.parse(await readFile(file, 'utf-8')) as AllEdits; } catch { return null; }
+      try { return JSON.parse(await readFile(file, 'utf-8')) as Stored; } catch { return null; }
     },
     async write(data) {
       await mkdir(dir, { recursive: true });

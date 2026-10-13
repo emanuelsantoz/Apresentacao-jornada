@@ -17,8 +17,9 @@ export const prints = {
   jornadaEnviar: { printId: 'jornada-09-enviar', label: 'Enviar chamado', fallback: 'chamado-modal' },
   jornadaEmail: { printId: 'jornada-10-email-confirmacao', label: 'E-mail de confirmação', fallback: 'email', emailSubject: 'Chamado aberto via Jornada' },
   helpCaixa: { printId: 'help-01-caixa-do-help', label: 'Caixa do Help', fallback: 'caixa-help' },
+  helpDashboard: { printId: 'help-01-dashboard', label: 'Dashboard do Help', fallback: 'caixa-help', fit: 'contain', position: 'top', bg: '#f3f6f5', menu: true },
   helpNovo: { printId: 'help-02-novo-chamado', label: 'Novo chamado', fallback: 'novo-chamado' },
-  helpEmail: { printId: 'help-03-email-abertura', label: 'E-mail de abertura', fallback: 'email', emailSubject: 'Chamado aberto com sucesso' },
+  helpEmail: { printId: 'help-03-email-abertura', label: 'E-mail de abertura', fallback: 'email', emailSubject: 'Chamado criado com sucesso', emailBody: 'prints/help-03-email-corpo.png', emailBodyFull: 'prints/help-03-email-completo.png' },
   helpAcompanhamento: { printId: 'help-04-acompanhamento', label: 'Acompanhamento', fallback: 'acompanhamento' },
   helpAvaliacao: { printId: 'help-05-avaliacao', label: 'Avaliação', fallback: 'avaliacao' },
 } satisfies Record<string, ScreenSpec>;

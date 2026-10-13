@@ -14,7 +14,7 @@ import { notify } from './notify';
  *  - clicar num card mostra alças para mudar o tamanho; cards novos também se movem;
  *  - Enter/✓ confirma e salva · Esc/✕ cancela as alterações do item · Ctrl+Z / Ctrl+Y desfazem/refazem.
  */
-type Kind = 'text' | 'cardText' | 'box' | 'card';
+type Kind = 'text' | 'cardText' | 'box' | 'card' | 'pin';
 interface Sel {
   kind: Kind;
   /** texto em edição (text/cardText) ou o card (box/card) */
@@ -38,12 +38,12 @@ const isInline = (k: Kind) => k === 'text' || k === 'cardText';
 const textNodesOf = (el: Element) => Array.from(el.childNodes).filter((n): n is Text => n.nodeType === Node.TEXT_NODE);
 
 function itemOf(s: Sel): Override | NewCard | undefined {
-  return s.kind === 'text' || s.kind === 'box' ? edits.get().textos[s.slideId]?.[s.key] : edits.card(s.slideId, s.key);
+  return s.kind === 'text' || s.kind === 'box' || s.kind === 'pin' ? edits.get().textos[s.slideId]?.[s.key] : edits.card(s.slideId, s.key);
 }
 
 function makeSel(kind: Kind, el: HTMLElement, root: HTMLElement): Sel {
   if (kind === 'text') remember(el);
-  const key = kind === 'text' ? keyOf(el, root) : kind === 'box' ? boxKeyOf(el, root) : (kind === 'card' ? el.dataset.newCard : el.dataset.cardText)!;
+  const key = kind === 'text' ? keyOf(el, root) : kind === 'box' || kind === 'pin' ? boxKeyOf(el, root) : (kind === 'card' ? el.dataset.newCard : el.dataset.cardText)!;
   const s: Sel = {
     kind, el, root, key, slideId: root.dataset.slideId!, start: '',
     nodes: kind === 'text' ? directTextNodes(el) : [],
@@ -225,7 +225,7 @@ export function TextEditor() {
     const s = selRef.current;
     if (!s) return;
     if (s.kind === 'text') edits.reset(s.slideId, s.key, s.boxKey!);
-    else if (s.kind === 'box') edits.reset(s.slideId, s.key);
+    else if (s.kind === 'box' || s.kind === 'pin') edits.reset(s.slideId, s.key);
     else if (s.kind === 'cardText') {
       edits.updateCard(s.slideId, s.key, { t: { fontSize: 36, fontWeight: 600, color: undefined, background: undefined, marks: undefined } }, { label: 'restaurar estilo' });
     } else edits.updateCard(s.slideId, s.key, { w: 440, h: 190 }, { label: 'restaurar tamanho' });
@@ -237,7 +237,7 @@ export function TextEditor() {
     const boxNow = s.boxKey ? JSON.stringify(edits.get().textos[s.slideId]?.[s.boxKey] ?? null) : undefined;
     if (JSON.stringify(itemOf(s) ?? null) !== s.start || boxNow !== s.boxStart) {
       const start = JSON.parse(s.start) as Override | NewCard | null;
-      if (s.kind === 'text' || s.kind === 'box') {
+      if (s.kind === 'text' || s.kind === 'box' || s.kind === 'pin') {
         const entries: [string, Override | undefined][] = [[s.key, (start as Override | null) ?? undefined]];
         if (s.boxKey) entries.push([s.boxKey, (JSON.parse(s.boxStart!) as Override | null) ?? undefined]);
         edits.putMany(s.slideId, entries, { label: 'cancelar' });
@@ -335,6 +335,8 @@ export function TextEditor() {
     const onMove = (e: MouseEvent) => {
       const t = e.target as Element;
       if (t.closest('[data-editor-ui]')) return;
+      const movable = t.closest<HTMLElement>('[data-movable]');
+      if (movable) { setHover((h) => (h?.el === movable ? h : { el: movable, tone: 'card' })); return; }
       const text = t.closest<HTMLElement>('[data-card-text]') ?? findEditable(t)?.el;
       if (text) { setHover((h) => (h?.el === text ? h : { el: text, tone: 'text' })); return; }
       const card = t.closest<HTMLElement>('[data-new-card]') ?? (t.closest('[data-print-slot], [data-no-edit]') ? null : findCard(t)?.el);
@@ -348,6 +350,14 @@ export function TextEditor() {
       const root = t.closest<HTMLElement>('[data-slide-root]');
       if (!root) return;
       const cur = selRef.current;
+
+      const movable = t.closest<HTMLElement>('[data-movable]'); // marcadores e cursor: só movem
+      if (movable) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cur?.el !== movable) select(makeSel('pin', movable, root));
+        return;
+      }
 
       const cardText = t.closest<HTMLElement>('[data-card-text]');
       const text = cardText ? { el: cardText, kind: 'cardText' as const } : (() => { const h = findEditable(t); return h && { el: h.el, kind: 'text' as const }; })();
@@ -376,6 +386,14 @@ export function TextEditor() {
       if (e.button !== 0) return;
       const t = e.target as Element;
       const root = t.closest<HTMLElement>('[data-slide-root]');
+      const movable = t.closest<HTMLElement>('[data-movable]');
+      if (root && movable && !t.closest('[data-editor-ui]')) { // marcador/cursor: arrasta direto
+        e.preventDefault();
+        const s = selRef.current?.el === movable ? selRef.current : makeSel('pin', movable, root);
+        if (s !== selRef.current) select(s);
+        startDrag(e, moveTargetOf(s), 'move');
+        return;
+      }
       if (!root || t.closest('[data-editor-ui], [data-card-text], [data-print-slot], [data-no-edit]') || findEditable(t)) return;
       const newCard = t.closest<HTMLElement>('[data-new-card]');
       const card = newCard ? { el: newCard, kind: 'card' as const } : (() => { const h = findCard(t); return h && { el: h.el, kind: 'box' as const }; })();
@@ -461,7 +479,7 @@ export function TextEditor() {
   // ---- desenho ---------------------------------------------------------------------
 
   const cardTarget: CardTarget | null = (() => {
-    if (!sel || !sel.el.isConnected) return null;
+    if (!sel || !sel.el.isConnected || sel.kind === 'pin') return null;
     if (sel.kind !== 'text') return moveTargetOf(sel);
     const c = findCard(sel.el); // texto dentro de um card: as alças são do card
     return c ? { el: c.el, root: sel.root, kind: 'box', slideId: sel.slideId, key: boxKeyOf(c.el, sel.root) } : null;
@@ -483,6 +501,7 @@ export function TextEditor() {
         ? { outline: '2px dashed rgba(18,134,79,0.9)', background: 'rgba(18,134,79,0.05)' }
         : { outline: '1.5px dashed rgba(29,78,216,0.6)', borderRadius: 10 })}
       {cardTarget && <CardFrame target={cardTarget} strong={sel?.kind === 'box' || sel?.kind === 'card'} />}
+      {sel?.kind === 'pin' && sel.el.isConnected && outline(sel.el, { outline: '2px solid #1D4ED8', borderRadius: 99, background: 'rgba(29,78,216,0.06)' })}
       {moveTarget?.el && <MovePill target={moveTarget} />}
       <Guides />
       {sel && isInline(sel.kind) && sel.el.isConnected && outline(sel.el, { outline: '2px solid #12864F', background: 'rgba(18,134,79,0.06)' })}

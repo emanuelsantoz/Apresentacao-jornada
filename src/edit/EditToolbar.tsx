@@ -1,4 +1,4 @@
-import { Check, Highlighter, Minus, Plus, RotateCcw, Square, Trash2, Type, X } from 'lucide-react';
+import { Check, Highlighter, Minus, Move, Plus, RotateCcw, Square, Trash2, Type, X } from 'lucide-react';
 import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import type { TextOverride } from './editsStore';
 
@@ -19,7 +19,7 @@ const CARD_FILLS = [
   { c: '#0B5D3B', n: 'Primária' }, { c: '#12864F', n: 'Ação' }, { c: '#FEF3C7', n: 'Alerta claro' }, { c: 'transparent', n: 'Sem fundo' },
 ];
 
-export type ToolbarKind = 'text' | 'cardText' | 'box' | 'card';
+export type ToolbarKind = 'text' | 'cardText' | 'box' | 'card' | 'pin';
 type Pop = 'color' | 'bg' | 'fill' | null;
 
 interface Props {
@@ -91,7 +91,7 @@ export function EditToolbar(p: Props) {
   return (
     <div ref={bar} data-editor-ui style={{ ...panel, left: pos.left, top: pos.top }} onClick={(e) => e.stopPropagation()}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-        <span style={tag}>{isText ? <><Type size={14} /> Texto</> : <><Square size={14} /> Card</>}</span>
+        <span style={tag}>{isText ? <><Type size={14} /> Texto</> : p.kind === 'pin' ? <><Move size={14} /> Elemento</> : <><Square size={14} /> Card</>}</span>
 
         {isText && (
           <>
@@ -119,6 +119,7 @@ export function EditToolbar(p: Props) {
           </>
         )}
 
+        {p.kind === 'pin' && <span style={{ fontSize: 12, opacity: 0.75, padding: '0 4px' }}>arraste para mover · setas ajustam (Shift = 10 px) · Alt: sem ímã</span>}
         {p.kind === 'box' && p.dims && <span style={{ fontSize: 12, opacity: 0.75, padding: '0 4px' }}>{p.dims.w} × {p.dims.h} px · arraste o card para mover, as alças para o tamanho</span>}
 
         {isNewCard && (

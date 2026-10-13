@@ -26,6 +26,7 @@ button { font: inherit; color: inherit; }
 [contenteditable]:not([contenteditable="false"]) { outline: none; caret-color: #12864F; cursor: text; }
 body[data-mode="edicao"] [data-card-text]:empty::before { content: 'Digite o texto'; opacity: 0.45; }
 body[data-mode="edicao"] [data-new-card] { cursor: move; }
+body[data-mode="edicao"] [data-movable] { pointer-events: auto; cursor: move; }
 body[data-mode="edicao"] [data-card-text] { cursor: text; }
 .spin { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }

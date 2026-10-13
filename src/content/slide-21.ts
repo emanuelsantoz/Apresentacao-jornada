@@ -1,4 +1,4 @@
-import { FolderOpen, MessageCircle, Ticket } from 'lucide-react';
+import { FolderOpen, Headset, MessageCircle } from 'lucide-react';
 import type { RulesData } from '../components/layouts/RulesLayout';
 import type { SlideMeta } from '../types/slide';
 import { M2 } from './sections';
@@ -12,10 +12,9 @@ export const data: RulesData = {
   eyebrow: 'Combinado',
   title: ['Cada coisa', 'no seu lugar'],
   rules: [
-    { icon: Ticket, use: 'BWS_HELP', name: 'Chamado', text: 'Toda solicitação começa aqui', featured: true },
+    { icon: Headset, use: 'BWS_HELP', name: 'Chamado', text: 'Toda solicitação começa aqui', featured: true },
     { icon: MessageCircle, use: 'Comunicação', name: 'Meios', text: 'Casos prioritários. Os demais seguem o fluxo normal' },
     { icon: FolderOpen, use: 'Arquivos', name: 'SharePoint', text: 'Arquivos e planilhas' },
   ],
-  avoid: '',
   motto: 'Cooperar para transformar vidas',
 };

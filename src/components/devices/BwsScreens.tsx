@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import type { CSSProperties, ReactNode } from 'react';
 import { ScaledScreen } from './ScaledScreen';
+import { ExpandButton } from '../ui/ExpandImage';
+import { useSlideState } from '../../hooks/useSlideState';
 
 export type ScreenKey =
   | 'inicio' | 'sessoes' | 'alerta' | 'sucesso' | 'sem-acesso' | 'sem-info' | 'chamado-modal'
@@ -42,18 +44,36 @@ const Card = ({ children, style }: { children: ReactNode; style?: CSSProperties 
   <div style={{ background: '#fff', border: `1px solid ${c.border}`, borderRadius: 6, ...style }}>{children}</div>
 );
 
-function Shell({ title, crumb, children, nav = 1 }: { title: string; crumb: string; children: ReactNode; nav?: number }) {
+/** Largura do menu lateral na tela base (1280 px). */
+const MENU_W = 86;
+
+function SideMenu({ nav }: { nav: number }) {
   const items = [LayoutGrid, Headset, Wallet, CreditCard, FileText, Inbox];
   return (
+    <aside style={{ width: MENU_W, height: '100%', background: c.chrome, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 22, gap: 14, flex: 'none' }}>
+      <span style={{ width: 44, height: 44, borderRadius: 10, background: 'var(--c-green-600)', display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 700, fontSize: 22, marginBottom: 14 }}>b</span>
+      {items.map((I, i) => (
+        <span key={i} style={{ width: 52, height: 52, borderRadius: 10, display: 'grid', placeItems: 'center', background: i === nav ? 'rgba(255,255,255,0.12)' : 'transparent', color: i === nav ? '#fff' : 'rgba(255,255,255,0.5)' }}>
+          <I size={26} strokeWidth={1.75} />
+        </span>
+      ))}
+    </aside>
+  );
+}
+
+/** Só o menu lateral do BWS (sem cabeçalho), na proporção da tela base; o print vai ao lado. */
+export function MenuStrip({ nav = 5 }: { nav?: number }) {
+  return (
+    <div style={{ position: 'relative', width: `${(MENU_W / 1280) * 100}%`, flex: 'none', background: c.chrome }}>
+      <ScaledScreen baseWidth={MENU_W} baseHeight={800}><SideMenu nav={nav} /></ScaledScreen>
+    </div>
+  );
+}
+
+function Shell({ title, crumb, children, nav = 1 }: { title: string; crumb: string; children: ReactNode; nav?: number }) {
+  return (
     <div style={{ display: 'flex', width: '100%', height: '100%', background: c.canvas, color: c.text, fontFamily: 'var(--font-brand)' }}>
-      <aside style={{ width: 86, background: c.chrome, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 22, gap: 14 }}>
-        <span style={{ width: 44, height: 44, borderRadius: 10, background: 'var(--c-green-600)', display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 700, fontSize: 22, marginBottom: 14 }}>b</span>
-        {items.map((I, i) => (
-          <span key={i} style={{ width: 52, height: 52, borderRadius: 10, display: 'grid', placeItems: 'center', background: i === nav ? 'rgba(255,255,255,0.12)' : 'transparent', color: i === nav ? '#fff' : 'rgba(255,255,255,0.5)' }}>
-            <I size={26} strokeWidth={1.75} />
-          </span>
-        ))}
-      </aside>
+      <SideMenu nav={nav} />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
         <header style={{ height: 72, background: '#fff', borderBottom: `1px solid ${c.border}`, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 18 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -235,10 +255,11 @@ function SemDados({ kind }: { kind: 'sem-acesso' | 'sem-info' }) {
   );
 }
 
-function Email({ subject = 'Chamado aberto com sucesso' }: { subject?: string }) {
+function Email({ subject = 'Chamado aberto com sucesso', body, bodyFull }: { subject?: string; body?: string; bodyFull?: string }) {
+  const { print } = useSlideState();
   return (
     <div style={{ display: 'flex', width: '100%', height: '100%', background: '#fff', fontFamily: 'var(--font-brand)', color: c.text }}>
-      <aside style={{ width: 380, borderRight: `1px solid ${c.border}`, background: c.canvas }}>
+      <aside style={{ width: 380, borderRight: `1px solid ${c.border}`, background: c.canvas, boxShadow: body ? `0 60px 0 ${c.canvas}` : undefined }}>
         <div style={{ height: 70, display: 'flex', alignItems: 'center', gap: 12, padding: '0 22px', fontWeight: 700, fontSize: 22 }}><Mail size={24} /> Caixa de entrada</div>
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i} style={{ padding: '18px 22px', borderTop: `1px solid ${c.border}`, background: i === 0 ? '#fff' : 'transparent', borderLeft: i === 0 ? '5px solid #12864F' : '5px solid transparent', display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -246,6 +267,12 @@ function Email({ subject = 'Chamado aberto com sucesso' }: { subject?: string })
           </div>
         ))}
       </aside>
+      {body ? (
+        <div style={{ position: 'relative', flex: 1, minWidth: 0, background: '#fff', boxShadow: '0 60px 0 #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 28 }}>
+          {!print && <ExpandButton src={`${import.meta.env.BASE_URL}${bodyFull ?? body}`} alt={subject} size={64} style={{ top: 20, right: 20 }} />}
+          <img src={`${import.meta.env.BASE_URL}${body}`} alt={subject} style={{ width: '100%', height: 'auto', maxHeight: '100%', objectFit: 'contain', display: 'block', background: '#fff' }} />
+        </div>
+      ) : (
       <div style={{ flex: 1, padding: 40, display: 'flex', flexDirection: 'column', gap: 22 }}>
         <span style={{ fontSize: 30, fontWeight: 700 }}>{subject}</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -262,6 +289,7 @@ function Email({ subject = 'Chamado aberto com sucesso' }: { subject?: string })
         </Card>
         <Bar w="85%" h={10} /><Bar w="65%" h={10} />
       </div>
+      )}
     </div>
   );
 }
@@ -393,14 +421,14 @@ const base: Record<ScreenKey, [number, number]> = {
 };
 
 /** Tela de exemplo por chave, já escalada para o container. */
-export function BwsScreen({ screen, emailSubject }: { screen: ScreenKey; emailSubject?: string }) {
+export function BwsScreen({ screen, emailSubject, emailBody, emailBodyFull }: { screen: ScreenKey; emailSubject?: string; emailBody?: string; emailBodyFull?: string }) {
   const [w, h] = base[screen];
   const content = (() => {
     switch (screen) {
       case 'inicio': return <Inicio />;
       case 'sessoes': case 'alerta': case 'sucesso': case 'chamado-modal': return <Sessoes mode={screen} />;
       case 'sem-acesso': case 'sem-info': return <SemDados kind={screen} />;
-      case 'email': return <Email subject={emailSubject} />;
+      case 'email': return <Email subject={emailSubject} body={emailBody} bodyFull={emailBodyFull} />;
       case 'caixa-help': return <CaixaHelp />;
       case 'novo-chamado': return <NovoChamado />;
       case 'acompanhamento': return <Acompanhamento />;
@@ -410,7 +438,7 @@ export function BwsScreen({ screen, emailSubject }: { screen: ScreenKey; emailSu
   })();
   return (
     <ScaledScreen baseWidth={w} baseHeight={h}>
-      <div style={{ position: 'relative', width: w, height: h }}>{content}{screen !== 'app' && <Tag />}</div>
+      <div style={{ position: 'relative', width: w, height: h }}>{content}{screen !== 'app' && !emailBody && <Tag />}</div>
     </ScaledScreen>
   );
 }

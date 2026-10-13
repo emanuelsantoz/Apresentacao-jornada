@@ -7,7 +7,8 @@ import { Title, Hl } from '../ui/Title';
 import { useRevealed, useSlideState } from '../../hooks/useSlideState';
 
 export interface Rule { icon: LucideIcon; name: string; use: string; text: string; featured?: boolean }
-export interface RulesData { eyebrow: string; title: [string, string]; rules: Rule[]; avoid: string; motto: string }
+/** `avoid`: aviso em vermelho ao lado do lema; vazio = não aparece. */
+export interface RulesData { eyebrow: string; title: [string, string]; rules: Rule[]; avoid?: string; motto: string }
 
 /** Três canais, cada um com seu papel; arquivo “pula” do chat para o SharePoint (passo 1). */
 export function RulesLayout({ d }: { d: RulesData }) {
@@ -47,11 +48,13 @@ export function RulesLayout({ d }: { d: RulesData }) {
       </div>
 
       <div style={{ display: 'flex', gap: 24, marginTop: 30, alignItems: 'stretch' }}>
-        <Reveal at={1} from="left" style={{ flex: 'none' }}>
-          <div style={{ height: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '20px 28px', borderRadius: 'var(--radius-md)', background: 'var(--c-danger-tint)', color: '#9b2c26', fontSize: 'var(--fs-body)', fontWeight: 600 }}>
-            <Ban size={32} /> {d.avoid}
-          </div>
-        </Reveal>
+        {d.avoid && (
+          <Reveal at={1} from="left" style={{ flex: 'none' }}>
+            <div style={{ height: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '20px 28px', borderRadius: 'var(--radius-md)', background: 'var(--c-danger-tint)', color: '#9b2c26', fontSize: 'var(--fs-body)', fontWeight: 600 }}>
+              <Ban size={32} /> {d.avoid}
+            </div>
+          </Reveal>
+        )}
         <Reveal at={2} from="right" style={{ flex: 1 }}>
           <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 28px', borderRadius: 'var(--radius-md)', background: 'var(--ws-action)', color: '#fff', fontSize: 32, fontWeight: 600 }}>
             {d.motto}

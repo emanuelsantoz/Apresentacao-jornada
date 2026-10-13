@@ -12,11 +12,11 @@ export const meta: SlideMeta = {
 export const data: AnnotatedData = {
   eyebrow: 'Interface',
   title: ['Conheça a', 'Caixa do Help'],
-  screen: prints.helpCaixa,
+  screen: prints.helpDashboard,
   items: [
-    { n: '1', icon: Gauge, title: 'Indicadores', text: 'Seus chamados por status.', pin: { x: 16, y: 26 } },
-    { n: '2', icon: ListChecks, title: 'Lista de chamados', text: 'Com prioridade e status.', pin: { x: 13, y: 52 } },
-    { n: '3', icon: Plus, title: 'Novo chamado', text: 'Abra um pedido em segundos.', pin: { x: 92, y: 14 } },
-    { n: '4', icon: Search, title: 'Busca e filtros', text: 'Encontre qualquer chamado.', pin: { x: 79, y: 14 } },
+    { n: '1', icon: Gauge, title: 'Indicadores', text: 'Seus chamados por status.', pin: { x: 28, y: 20 } },
+    { n: '2', icon: ListChecks, title: 'Lista de chamados', text: 'Com prioridade e status.', pin: { x: 12, y: 45 } },
+    { n: '3', icon: Plus, title: 'Novo chamado', text: 'Abra um pedido em segundos.', pin: { x: 71, y: 7 } },
+    { n: '4', icon: Search, title: 'Busca e filtros', text: 'Encontre qualquer chamado.', pin: { x: 86, y: 7 } },
   ],
 };

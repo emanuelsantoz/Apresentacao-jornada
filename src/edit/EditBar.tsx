@@ -1,6 +1,7 @@
 import { AlertTriangle, Check, Download, Eye, FolderDown, Loader2, Pencil, Plus, Redo2, Trash2, Undo2, Upload } from 'lucide-react';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { edits, useEditsMeta } from './editsStore';
+import { CloudMenu } from './CloudMenu';
 import { notify } from './notify';
 
 const time = (t?: number) => (t ? new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '');
@@ -55,6 +56,7 @@ export function EditBar({ slideId, onExit }: { slideId: string; onExit: () => vo
       </button>
 
       <SaveStatus status={meta.status} savedAt={meta.savedAt} />
+      <CloudMenu />
       <span style={{ opacity: 0.7 }}>
         <b>{here}</b> neste slide · <b>{total}</b> no total
       </span>
@@ -97,7 +99,7 @@ function SaveStatus({ status, savedAt }: { status: string; savedAt?: number }) {
   const map = {
     carregando: { icon: <Loader2 size={14} className="spin" />, text: 'Carregando…', color: '#E8F5E9' },
     salvando: { icon: <Loader2 size={14} className="spin" />, text: 'Salvando…', color: '#E8F5E9' },
-    salvo: { icon: <Check size={14} />, text: savedAt ? `Salvo neste navegador · ${time(savedAt)}` : 'Tudo salvo', color: '#86EFAC' },
+    salvo: { icon: <Check size={14} />, text: savedAt ? `Navegador · ${time(savedAt)}` : 'Tudo salvo', color: '#86EFAC' },
     erro: { icon: <AlertTriangle size={14} />, text: 'Erro ao salvar — exporte o arquivo', color: '#FCA5A5' },
   } as const;
   const s = map[status as keyof typeof map] ?? map.salvo;

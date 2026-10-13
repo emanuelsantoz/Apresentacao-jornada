@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useEditsDoc } from '../../edit/editsStore';
 import { motionTokens } from '../../theme/tokens';
 import { Laptop } from '../devices/Devices';
 import { Screen, type ScreenSpec } from '../devices/Screen';
@@ -29,37 +30,41 @@ export interface AnnotatedData {
 const TIP = 16;
 const MOVE = 0.9;
 
-/** Cursor de mouse que acompanha o passo: desliza até o marcador e clica (afunda + onda). */
-function ClickCursor({ pin, step }: { pin: { x: number; y: number }; step: number }) {
-  const first = useRef(true);
-  useEffect(() => { first.current = false; }, []);
-  // na entrada do slide espera notebook e marcadores aparecerem
-  const arrive = (first.current ? 1.1 : 0.1) + MOVE;
+/** Alvo do cursor em px, na área da tela (centro do marcador já com o deslocamento feito no modo edição). */
+interface CursorTarget { x: number; y: number; w: number; h: number; dur: number; delay: number }
+
+/**
+ * Cursor de mouse que acompanha o passo: desliza até o marcador e clica (afunda + onda).
+ * No modo edição o cursor (`data-movable`) pode ser arrastado: o deslocamento vale para todos os passos.
+ */
+function ClickCursor({ t, step }: { t: CursorTarget; step: number }) {
+  const arrive = t.delay + t.dur;
   return (
     <motion.div
-      data-no-edit
       aria-hidden
       style={{ position: 'absolute', width: 0, height: 0, zIndex: 6, pointerEvents: 'none' }}
-      initial={{ left: '94%', top: '112%', opacity: 0 }}
-      animate={{ left: `${pin.x}%`, top: `${pin.y}%`, opacity: 1 }}
-      transition={{ duration: MOVE, ease: motionTokens.ease, delay: arrive - MOVE }}
+      initial={{ left: t.w * 0.94, top: t.h * 1.12, opacity: 0 }}
+      animate={{ left: t.x, top: t.y, opacity: 1 }}
+      transition={{ duration: t.dur, ease: motionTokens.ease, delay: t.delay }}
     >
-      <motion.span
-        key={`onda-${step}`}
-        style={{ position: 'absolute', left: TIP - 26, top: TIP - 26, width: 52, height: 52, borderRadius: 52, border: '3px solid #fff', boxShadow: '0 0 0 3px rgba(18,134,79,0.55)' }}
-        initial={{ scale: 0.2, opacity: 0 }}
-        animate={{ scale: [0.2, 1.5], opacity: [0.95, 0] }}
-        transition={{ duration: 0.6, delay: arrive + 0.08, ease: 'easeOut' }}
-      />
-      <motion.svg
-        key={`clique-${step}`}
-        width={46} height={54} viewBox="0 0 24 28"
-        style={{ position: 'absolute', left: TIP - 5.75, top: TIP - 3.85, overflow: 'visible', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))', transformOrigin: '12% 7%' }}
-        animate={{ scale: [1, 0.82, 1] }}
-        transition={{ duration: 0.32, delay: arrive, times: [0, 0.4, 1] }}
-      >
-        <path d="M3 2 L3 22.5 L8.3 17.4 L11.8 25.6 L15.6 24 L12.1 15.9 L19.6 15.9 Z" fill="#fff" stroke="#0B2E1F" strokeWidth={1.6} strokeLinejoin="round" />
-      </motion.svg>
+      <span data-movable style={{ position: 'absolute', left: TIP - 5.75, top: TIP - 3.85, width: 46, height: 54 }}>
+        <motion.span
+          key={`onda-${step}`}
+          style={{ position: 'absolute', left: 5.75 - 26, top: 3.85 - 26, width: 52, height: 52, borderRadius: 52, border: '3px solid #fff', boxShadow: '0 0 0 3px rgba(18,134,79,0.55)', pointerEvents: 'none' }}
+          initial={{ scale: 0.2, opacity: 0 }}
+          animate={{ scale: [0.2, 1.5], opacity: [0.95, 0] }}
+          transition={{ duration: 0.6, delay: arrive + 0.08, ease: 'easeOut' }}
+        />
+        <motion.svg
+          key={`clique-${step}`}
+          width={46} height={54} viewBox="0 0 24 28"
+          style={{ display: 'block', overflow: 'visible', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))', transformOrigin: '12% 7%' }}
+          animate={{ scale: [1, 0.82, 1] }}
+          transition={{ duration: 0.32, delay: arrive, times: [0, 0.4, 1] }}
+        >
+          <path d="M3 2 L3 22.5 L8.3 17.4 L11.8 25.6 L15.6 24 L12.1 15.9 L19.6 15.9 Z" fill="#fff" stroke="#0B2E1F" strokeWidth={1.6} strokeLinejoin="round" />
+        </motion.svg>
+      </span>
     </motion.div>
   );
 }
@@ -71,7 +76,26 @@ function ClickCursor({ pin, step }: { pin: { x: number; y: number }; step: numbe
 export function AnnotatedLayout({ d }: { d: AnnotatedData }) {
   const { step, print } = useSlideState();
   const active = print ? -1 : step;
-  const cursorAt = active >= 0 ? d.items[Math.min(active, d.items.length - 1)] : undefined;
+  const showCursor = d.cursor !== false && active >= 0;
+
+  // O cursor vai até o marcador real (inclui o deslocamento feito no modo edição), medido no DOM.
+  const doc = useEditsDoc();
+  const pinEls = useRef<(HTMLElement | null)[]>([]);
+  const lastStep = useRef<number | null>(null);
+  const [target, setTarget] = useState<CursorTarget | null>(null);
+  useEffect(() => {
+    const el = showCursor ? pinEls.current[Math.min(active, d.items.length - 1)] : null;
+    const parent = el?.offsetParent as HTMLElement | null | undefined;
+    if (!el || !parent) { setTarget(null); lastStep.current = null; return; }
+    const [tx, ty] = el.style.translate.split(' ').map((v) => parseFloat(v) || 0);
+    const moved = lastStep.current !== null && lastStep.current !== active; // só desliza quando o passo muda
+    setTarget({
+      x: el.offsetLeft + el.offsetWidth / 2 + (tx ?? 0), y: el.offsetTop + el.offsetHeight / 2 + (ty ?? 0),
+      w: parent.clientWidth, h: parent.clientHeight,
+      dur: moved ? MOVE : lastStep.current === null ? MOVE : 0, delay: lastStep.current === null ? 1.1 : moved ? 0.1 : 0,
+    });
+    lastStep.current = active;
+  }, [active, showCursor, doc, d.items.length]);
   return (
     <>
       <div style={{ position: 'absolute', left: 820, top: 0, right: 0, bottom: 0, borderRadius: '16px 0 0 16px', overflow: 'hidden', background: 'var(--c-green-950)' }}>
@@ -115,6 +139,8 @@ export function AnnotatedLayout({ d }: { d: AnnotatedData }) {
             return (
               <motion.span
                 key={it.n}
+                ref={(el) => { pinEls.current[i] = el; }}
+                data-movable
                 className="num"
                 style={{
                   position: 'absolute', left: `${it.pin.x}%`, top: `${it.pin.y}%`, width: 54, height: 54, marginLeft: -27, marginTop: -27, zIndex: 5,
@@ -130,7 +156,7 @@ export function AnnotatedLayout({ d }: { d: AnnotatedData }) {
               </motion.span>
             );
           })}
-          {d.cursor !== false && cursorAt && <ClickCursor pin={cursorAt.pin} step={active} />}
+          {showCursor && target && <ClickCursor t={target} step={active} />}
         </Laptop>
       </motion.div>
     </>

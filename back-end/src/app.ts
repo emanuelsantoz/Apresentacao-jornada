@@ -4,13 +4,14 @@ import { HTTPException } from 'hono/http-exception';
 import { bearerAuth } from 'hono/bearer-auth';
 import { handle } from '@hono/node-server/vercel';
 import { defaultStorage, type Storage } from './storage.js';
-import { validarOverride, validarTudo, type AllEdits, type TextOverride } from './types.js';
+import { isDoc, textosOf, validarOverride, validarTudo, type Override, type Stored } from './types.js';
 
 /**
  * API do edicoes.json.
  *
  *  GET    /edicoes                         arquivo inteiro ({} se ainda não existe)
- *  PUT    /edicoes                         salva o arquivo inteiro (substitui)
+ *  PUT    /edicoes                         salva o arquivo inteiro (substitui): formato v2 { versao, textos, cards } ou v1
+ *  (as rotas por slide/campo mexem só na parte de textos; DELETE do slide remove também os cards dele)
  *  DELETE /edicoes                         exclui o arquivo
  *  GET    /edicoes/:slideId                edições de um slide
  *  DELETE /edicoes/:slideId                remove o slide inteiro
@@ -44,8 +45,9 @@ export function createApp(storage: Storage = defaultStorage()) {
     const body = await c.req.json().catch(() => undefined);
     const erro = validarTudo(body);
     if (erro) return c.json({ erro }, 400);
-    await storage.write(body as AllEdits);
-    return c.json({ ok: true, slides: Object.keys(body as AllEdits).length });
+    const todos = body as Stored;
+    await storage.write(todos);
+    return c.json({ ok: true, slides: Object.keys(textosOf(todos)).length + (isDoc(todos) ? Object.keys(todos.cards ?? {}).length : 0) });
   });
 
   app.delete('/edicoes', async (c) => {
@@ -55,15 +57,18 @@ export function createApp(storage: Storage = defaultStorage()) {
 
   // ---- por slide ----
   app.get('/edicoes/:slideId', async (c) => {
-    const slide = ((await storage.read()) ?? {})[c.req.param('slideId')];
+    const slide = textosOf((await storage.read()) ?? {})[c.req.param('slideId')];
     return slide ? c.json(slide) : c.json({ erro: 'slide sem edições' }, 404);
   });
 
   app.delete('/edicoes/:slideId', async (c) => {
     const id = c.req.param('slideId');
-    const all = (await storage.read()) ?? {};
-    if (!(id in all)) return c.json({ erro: 'slide sem edições' }, 404);
-    delete all[id];
+    const all: Stored = (await storage.read()) ?? {};
+    const textos = textosOf(all);
+    const cards = isDoc(all) ? (all.cards ??= {}) : {};
+    if (!(id in textos) && !(id in cards)) return c.json({ erro: 'slide sem edições' }, 404);
+    delete textos[id];
+    delete cards[id];
     await storage.write(all);
     return c.json({ ok: true });
   });
@@ -72,7 +77,7 @@ export function createApp(storage: Storage = defaultStorage()) {
   app.get('/edicoes/:slideId/campo', async (c) => {
     const chave = c.req.query('chave');
     if (!chave) return c.json({ erro: 'informe ?chave=' }, 400);
-    const campo = ((await storage.read()) ?? {})[c.req.param('slideId')]?.[chave];
+    const campo = textosOf((await storage.read()) ?? {})[c.req.param('slideId')]?.[chave];
     return campo ? c.json(campo) : c.json({ erro: 'campo não encontrado' }, 404);
   });
 
@@ -83,10 +88,11 @@ export function createApp(storage: Storage = defaultStorage()) {
     if (erro) return c.json({ erro }, 400);
 
     const id = c.req.param('slideId');
-    const all = (await storage.read()) ?? {};
-    const atual = all[id]?.[body.chave];
-    const novo: TextOverride = { ...atual, ...(body.valor as TextOverride) };
-    all[id] = { ...all[id], [body.chave]: novo };
+    const all: Stored = (await storage.read()) ?? {};
+    const textos = textosOf(all);
+    const atual = textos[id]?.[body.chave];
+    const novo: Override = { ...atual, ...(body.valor as Override) };
+    textos[id] = { ...textos[id], [body.chave]: novo };
     await storage.write(all);
     return c.json({ ok: true, criado: !atual, campo: novo }, atual ? 200 : 201);
   });
@@ -95,10 +101,11 @@ export function createApp(storage: Storage = defaultStorage()) {
     const chave = c.req.query('chave');
     if (!chave) return c.json({ erro: 'informe ?chave=' }, 400);
     const id = c.req.param('slideId');
-    const all = (await storage.read()) ?? {};
-    if (!all[id]?.[chave]) return c.json({ erro: 'campo não encontrado' }, 404);
-    delete all[id][chave];
-    if (!Object.keys(all[id]).length) delete all[id]; // não deixa slide vazio no arquivo
+    const all: Stored = (await storage.read()) ?? {};
+    const textos = textosOf(all);
+    if (!textos[id]?.[chave]) return c.json({ erro: 'campo não encontrado' }, 404);
+    delete textos[id][chave];
+    if (!Object.keys(textos[id]).length) delete textos[id]; // não deixa slide vazio no arquivo
     await storage.write(all);
     return c.json({ ok: true });
   });

@@ -15,7 +15,8 @@ Proporção ideal: tablet 4:3 (ex.: 1600x1200) · notebook 16:10 (ex.: 1920x1200
 | jornada-08-observacao.png | Slide 9 (passo 2) |
 | jornada-09-enviar.png | Slide 9 (passo 3) |
 | jornada-10-email-confirmacao.png | Slide 10 |
-| help-01-caixa-do-help.png | Slides 1 e 14 |
+| help-01-caixa-do-help.png | Slide 1 |
+| help-01-dashboard.png | Slide 14 |
 | help-02-novo-chamado.png | Slide 15 |
 | help-03-email-abertura.png | Slide 16 |
 | help-04-acompanhamento.png | Slide 17 |

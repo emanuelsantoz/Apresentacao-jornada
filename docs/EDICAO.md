@@ -49,6 +49,15 @@ Textos dentro das telas de exemplo dos mockups não são editáveis (são substi
 - O status na faixa mostra **Salvando…**, **Salvo neste navegador · hh:mm** ou erro.
 - O histórico vale para a sessão aberta. Ao recarregar a página, as edições continuam, mas o histórico de desfazer recomeça.
 
+## Nuvem (back-end no Vercel)
+As edições são sincronizadas com a API em `VITE_API_URL` (padrão: `https://apresentacao-jornada-drnc.vercel.app`; veja `.env.example`). `VITE_CLOUD=off` desliga.
+- **Ao abrir** (apresentação, edição ou PDF): carrega da nuvem. Sem conexão, usa este navegador e `public/edicoes.json`.
+- **Ao editar**: envia sozinho ~1,5 s depois (precisa do **token**). O indicador na faixa do topo mostra **Nuvem · hh:mm** (em dia), **Enviando…**, **Envio pendente**, **Informar token**, **Sem conexão**, **Erro na nuvem** ou **Conflito**.
+- **Token**: clique no indicador → cole o `API_TOKEN` → Salvar. Fica só no navegador de quem edita (não vai para o código, o build nem o PDF). Quem só apresenta não precisa de token.
+- **Enviar agora / Carregar da nuvem**: no mesmo painel. Carregar da nuvem entra no histórico (Ctrl+Z desfaz).
+- **Conflito**: se este navegador tem alterações não enviadas e a nuvem também mudou, nada é sobrescrito. O painel pede para escolher **Usar a da nuvem** ou **Enviar a minha**. Antes de cada envio a nuvem é conferida; se outra pessoa salvou nesse meio tempo, também vira conflito.
+- Ao voltar para a aba, a apresentação atualiza sozinha com a versão mais nova da nuvem (se não houver alterações locais pendentes).
+
 ## Onde as edições ficam
 - Salvas automaticamente **neste navegador** (IndexedDB).
 - **Salvar no projeto** (só com `npm run dev`): grava `public/edicoes.json` direto no projeto. O botão fica laranja quando há alterações que ainda não estão no arquivo e mostra “Projeto em dia” quando está tudo gravado.

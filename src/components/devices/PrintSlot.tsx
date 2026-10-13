@@ -3,6 +3,7 @@ import { useRef, useState, type DragEvent, type ReactNode } from 'react';
 import { usePrint } from '../../hooks/usePrint';
 import { useSlideState } from '../../hooks/useSlideState';
 import { useEditMode } from '../../edit/EditMode';
+import { ExpandButton } from '../ui/ExpandImage';
 
 interface Props {
   /** Identificador do print = nome do arquivo em public/prints/<id>.png */
@@ -54,6 +55,8 @@ export function PrintSlot({ id, label, children, fit = 'cover', position = 'top'
       ) : (
         children
       )}
+
+      {src && !print && <ExpandButton src={src} alt={label} style={{ top: 'auto', right: 'auto', left: 14, bottom: 14 }} />}
 
       {canEdit && (
         <div

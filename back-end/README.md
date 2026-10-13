@@ -3,7 +3,7 @@
 Pequena API **Hono** (roda na Vercel) que guarda o arquivo de edições da apresentação no **Vercel Blob**.
 Fase 2 do projeto: hoje o `edicoes.json` vive só no navegador; aqui ele passa a ter um lugar central.
 
-Arquivo no Blob: `apresentacao/edicoes.json` · formato: `{ [slideId]: { [chave]: { texts?, color?, fontSize?, fontWeight? } } }`
+Arquivo no Blob: `apresentacao/edicoes.json` · formato v2: `{ versao: 2, textos: { [slideId]: { [chave]: Override } }, cards: { [slideId]: NewCard[] } }` (o formato antigo, só `{ [slideId]: { [chave]: Override } }`, continua aceito). `Override` = `texts, color, fontSize, fontWeight, background, marks, width, height, dx, dy`.
 
 ## Rotas
 
@@ -51,4 +51,5 @@ curl localhost:8787/edicoes
 
 - O arquivo no Blob é **público por URL** (só contém textos/estilos dos slides). Quem altera é protegido pelo token.
 - Gravação é "ler → alterar → regravar": duas edições no mesmo instante podem se sobrescrever. Para poucos editores, tudo bem.
-- O front ainda não chama esta API. Próximo passo: botões "Salvar na nuvem / Carregar da nuvem" na barra de edição.
+- O front já usa esta API (`GET /edicoes` ao abrir, `PUT /edicoes` ao editar, com o token digitado por quem edita). Veja `docs/EDICAO.md` › Nuvem.
+- Ao mudar `types.ts` (campos novos no editor), publique o back-end de novo: ele recusa campos que não conhece.
