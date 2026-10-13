@@ -18,7 +18,7 @@ export const data: TabletDuoData = {
       bullets: ['Clique na sessão em laranja', 'Veja o diagnóstico e siga a recomendação'],
       screen: prints.jornadaAlerta,
       callout: { icon: Stethoscope, title: 'Diagnóstico + solução', text: 'O cenário é explicado, e o próximo passo recomendado' },
-      spot: { x: 30, y: 38 },
+      spot: { x: 52, y: 35 },
     },
     {
       tag: 'Tela 4', name: 'Sucesso', tone: 'success', icon: CheckCircle2,

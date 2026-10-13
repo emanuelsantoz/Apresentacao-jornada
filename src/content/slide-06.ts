@@ -25,7 +25,7 @@ export const data: TabletDuoData = {
       bullets: ['Dados insuficientes para diagnóstico'],
       screen: prints.jornadaSemInfo,
       callout: { icon: TicketPlus, title: 'Abrir Chamado', text: '' },
-      spot: { x: 54, y: 66 },
+      spot: { x: 76, y: 82 },
     },
   ],
 };

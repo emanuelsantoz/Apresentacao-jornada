@@ -13,7 +13,7 @@ export const data: StepsData = {
   eyebrow: 'Passo a passo',
   title: ['3 passos para', 'abrir o chamado'],
   steps: [
-    { n: '01', icon: MousePointerClick, verb: 'Clique', text: 'em “Abrir Chamado”', screen: prints.jornadaBotaoChamado },
+    { n: '01', icon: MousePointerClick, verb: 'Clique', text: 'em “Abrir Chamado”', screen: prints.jornadaBotaoChamadoPasso },
     { n: '02', icon: PencilLine, verb: 'Descreva', text: 'Se necessário, inclua uma observação', screen: prints.jornadaFormChamado },
     { n: '03', icon: Send, verb: 'Envie', text: 'Pronto: Chamado aberto', screen: prints.jornadaEnviar },
   ],
