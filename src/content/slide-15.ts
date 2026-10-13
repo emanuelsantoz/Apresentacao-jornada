@@ -15,8 +15,8 @@ export const data: AnnotatedData = {
   screen: prints.helpNovo,
   items: [
     { n: '1', icon: Plus, title: 'Novo chamado', text: 'Clique em “+ Novo chamado”.', pin: { x: 33, y: 6 } },
-    { n: '2', icon: LayoutGrid, title: 'Categoria', text: 'Escolha o assunto certo.', pin: { x: 50, y: 37 } },
+    { n: '2', icon: LayoutGrid, title: 'Categoria', text: 'Escolha o assunto certo.', pin: { x: 43, y: 37 } },
     { n: '3', icon: Paperclip, title: 'Detalhe', text: 'Descreva e anexe prints.', pin: { x: 79, y: 31 } },
-    { n: '4', icon: Send, title: 'Enviar', text: 'Confirme o envio.', pin: { x: 89, y: 65 } },
+    { n: '4', icon: Send, title: 'Enviar', text: 'Confirme o envio.', pin: { x: 85, y: 65 } },
   ],
 };
