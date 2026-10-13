@@ -14,6 +14,7 @@ export const data: CoverData = {
   titleB: 'BWS_HELP',
   subtitle: 'Soluções práticas para desafios do dia a dia',
   meta: 'Outubro · 2026',
-  tablet: prints.jornadaSessoes,
-  laptop: prints.helpCaixa,
+  // mesmas telas do slide 14 (notebook) e da Tela 3 do slide 5 (tablet)
+  tablet: prints.jornadaAlerta,
+  laptop: prints.helpDashboard,
 };

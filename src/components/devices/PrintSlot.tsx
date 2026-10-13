@@ -17,6 +17,8 @@ interface Props {
   position?: string;
   /** Cor de fundo atrás do print (faixas livres no modo contain). */
   bg?: string;
+  /** Canto do botão “expandir”: padrão embaixo à esquerda (o canto de cima costuma ter conteúdo da tela). */
+  expandAt?: 'bottom-left' | 'top-right' | 'none';
 }
 
 /**
@@ -24,7 +26,7 @@ interface Props {
  * passar o mouse) para substituir a tela de exemplo. Para fixar no projeto, salve o
  * arquivo como public/prints/<id>.png.
  */
-export function PrintSlot({ id, label, children, fit = 'cover', position = 'top', bg }: Props) {
+export function PrintSlot({ id, label, children, fit = 'cover', position = 'top', bg, expandAt = 'bottom-left' }: Props) {
   const { src, source, save, remove } = usePrint(id);
   const { print } = useSlideState();
   const { editing } = useEditMode();
@@ -56,7 +58,7 @@ export function PrintSlot({ id, label, children, fit = 'cover', position = 'top'
         children
       )}
 
-      {src && !print && <ExpandButton src={src} alt={label} style={{ top: 'auto', right: 'auto', left: 14, bottom: 14 }} />}
+      {src && !print && expandAt !== 'none' && <ExpandButton src={src} alt={label} style={expandAt === 'top-right' ? { top: 14, right: 14, left: 'auto', bottom: 'auto' } : { top: 'auto', right: 'auto', left: 14, bottom: 14 }} />}
 
       {canEdit && (
         <div

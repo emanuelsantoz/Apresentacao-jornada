@@ -25,6 +25,7 @@ Fonte: `content-source/roteiro-jornada-cooperado-bws-help.md`.
 | 19 | Avaliação | slide-19.ts | DeviceFocusLayout | 0 |
 | 20 | E o Teams? | slide-20.ts | StatementLayout | 2 |
 | 21 | Cada coisa no seu lugar | slide-21.ts | RulesLayout | 2 |
+| 22 | Acesse o portal BWS (chamada para ação) | slide-22.ts | CtaLayout | 0 |
 
 ## Itens a confirmar
 - **Slide 13:** valores lidos do print “Evolução e Tipos” (soma 180 nos dois gráficos). Rótulos com “…” estavam cortados no print.

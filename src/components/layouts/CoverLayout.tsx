@@ -55,7 +55,7 @@ export function CoverLayout({ d }: { d: CoverData }) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       >
-        <Laptop width={860}><Screen spec={d.laptop} /></Laptop>
+        <Laptop width={860}><Screen spec={d.laptop} expandAt="none" /></Laptop>
       </motion.div>
       <motion.div
         style={{ position: 'absolute', left: 1180, top: 560, zIndex: 3 }}
@@ -63,7 +63,7 @@ export function CoverLayout({ d }: { d: CoverData }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
       >
-        <Tablet width={600} ><Screen spec={d.tablet} /></Tablet>
+        <Tablet width={600} ><Screen spec={d.tablet} expandAt="none" /></Tablet>
       </motion.div>
     </>
   );

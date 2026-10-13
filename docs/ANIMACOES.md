@@ -15,6 +15,7 @@ Biblioteca: `motion` (Framer Motion). Tokens em `src/theme/tokens.ts` → `motio
 | Marcadores (14–15) | marcador ativo cresce com mola |
 | Status (18) | trilho **atrás** dos ícones; linha cresce e cada estação aparece quando a linha chega; depois pulsos percorrem o trilho em loop (constantes `FILL_START`/`FILL_DURATION` em `StatusLayout.tsx`) |
 | Regras (21) | arquivo “pula” do Teams para o SharePoint |
+| Chamada para ação (22) | botão com pulso suave; notebook entra pela direita |
 | Fundo | sólido (WorkSpace) — sem formas flutuantes; `shapes` no meta reativa os triângulos se necessário |
 
 - **Passos:** `meta.steps` define quantos cliques internos o slide tem. Use `<Reveal at={1}>` para aparecer no 1º clique.

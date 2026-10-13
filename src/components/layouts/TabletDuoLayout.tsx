@@ -96,7 +96,7 @@ export function TabletDuoLayout({ d }: { d: TabletDuoData }) {
             transition={{ duration: 0.7, ease: motionTokens.ease }}
           >
             <Tablet width={W}>
-              <Screen spec={s.screen} />
+              <Screen spec={s.screen} expandAt="top-right" />
               {front && s.spot && (
                 <motion.span
                   key={`spot-${active}`}

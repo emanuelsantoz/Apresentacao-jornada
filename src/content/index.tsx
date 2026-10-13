@@ -17,6 +17,7 @@ import { AnnotatedLayout } from '../components/layouts/AnnotatedLayout';
 import { StatusLayout } from '../components/layouts/StatusLayout';
 import { StatementLayout } from '../components/layouts/StatementLayout';
 import { RulesLayout } from '../components/layouts/RulesLayout';
+import { CtaLayout } from '../components/layouts/CtaLayout';
 
 import * as s01 from './slide-01';
 import * as s02 from './slide-02';
@@ -39,6 +40,7 @@ import * as s18 from './slide-18';
 import * as s19 from './slide-19';
 import * as s20 from './slide-20';
 import * as s21 from './slide-21';
+import * as s22 from './slide-22';
 
 export const slides: SlideDef[] = [
   { ...s01.meta, Component: () => <CoverLayout d={s01.data} /> },
@@ -62,4 +64,5 @@ export const slides: SlideDef[] = [
   { ...s19.meta, Component: () => <DeviceFocusLayout d={s19.data} /> },
   { ...s20.meta, Component: () => <StatementLayout d={s20.data} /> },
   { ...s21.meta, Component: () => <RulesLayout d={s21.data} /> },
+  { ...s22.meta, Component: () => <CtaLayout d={s22.data} /> },
 ];

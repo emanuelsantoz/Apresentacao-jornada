@@ -24,10 +24,10 @@ export interface ScreenSpec {
 }
 
 /** Conteúdo de tela de um mockup: print real (se houver) ou tela de exemplo. */
-export function Screen({ spec }: { spec: ScreenSpec }) {
+export function Screen({ spec, expandAt }: { spec: ScreenSpec; expandAt?: 'bottom-left' | 'top-right' | 'none' }) {
   const { src } = usePrint(spec.printId);
   const slot = (
-    <PrintSlot id={spec.printId} label={spec.label} fit={spec.fit} position={spec.position} bg={spec.bg}>
+    <PrintSlot id={spec.printId} label={spec.label} fit={spec.fit} position={spec.position} bg={spec.bg} expandAt={expandAt}>
       <BwsScreen screen={spec.fallback} emailSubject={spec.emailSubject} emailBody={spec.emailBody} emailBodyFull={spec.emailBodyFull} />
     </PrintSlot>
   );
