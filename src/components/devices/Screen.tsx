@@ -16,6 +16,8 @@ export interface ScreenSpec {
   emailBodyFull?: string;
   /** Mostra o menu lateral do BWS à esquerda e o print ao lado (em vez do print ocupar a tela toda). */
   menu?: boolean;
+  /** Item do menu lateral em destaque (0 = início, 5 = Caixa do Help, padrão). */
+  menuNav?: number;
   /** Como o print preenche a tela do mockup (padrão: cover). Use 'contain' para prints mais largos que o tablet. */
   fit?: 'cover' | 'contain';
   position?: string;
@@ -34,7 +36,7 @@ export function Screen({ spec, expandAt }: { spec: ScreenSpec; expandAt?: 'botto
   if (!spec.menu || !src) return slot;
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex' }}>
-      <MenuStrip />
+      <MenuStrip nav={spec.menuNav} />
       <div style={{ position: 'relative', flex: 1, minWidth: 0 }}>{slot}</div>
     </div>
   );

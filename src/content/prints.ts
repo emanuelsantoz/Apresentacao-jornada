@@ -22,6 +22,8 @@ export const prints = {
   jornadaEmail: { printId: 'jornada-10-email-confirmacao', label: 'E-mail de confirmação', fallback: 'email', emailSubject: 'Chamado criado com sucesso', emailBody: 'prints/help-03-email-corpo.png', emailBodyFull: 'prints/help-03-email-completo.png' },
   helpCaixa: { printId: 'help-01-caixa-do-help', label: 'Caixa do Help', fallback: 'caixa-help' },
   helpDashboard: { printId: 'help-01-dashboard', label: 'Dashboard do Help', fallback: 'caixa-help', fit: 'contain', position: 'top', bg: '#f3f6f5', menu: true },
+  // slide 22 (chamada para ação): home do portal BWS
+  bwsCockpit: { printId: 'bws-cockpit-home', label: 'Portal BWS · Cockpit', fallback: 'caixa-help', fit: 'contain', position: 'top', bg: '#f4f6f5', menu: true, menuNav: 0 },
   helpNovo: { printId: 'help-02-novo-chamado', label: 'Novo chamado', fallback: 'novo-chamado', fit: 'contain', position: 'top', bg: '#f3f6f5', menu: true },
   helpEmail: { printId: 'help-03-email-abertura', label: 'E-mail de abertura', fallback: 'email', emailSubject: 'Chamado criado com sucesso', emailBody: 'prints/help-03-email-corpo.png', emailBodyFull: 'prints/help-03-email-completo.png' },
   helpAcompanhamento: { printId: 'help-04-acompanhamento', label: 'Acompanhamento', fallback: 'acompanhamento', fit: 'contain', position: 'top', bg: '#f3f6f5', menu: true },

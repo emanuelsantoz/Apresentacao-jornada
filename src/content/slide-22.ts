@@ -14,5 +14,5 @@ export const data: CtaData = {
   titleB: 'portal BWS',
   text: 'Abra o BWS_HELP e peça ajuda à TI em poucos cliques.',
   cta: { label: 'Acessar o portal BWS', url: 'https://bws.barracred.app.br/home/dashboard' },
-  screen: prints.helpDashboard,
+  screen: prints.bwsCockpit,
 };
