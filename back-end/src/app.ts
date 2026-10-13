@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
 import { bearerAuth } from 'hono/bearer-auth';
+import { handle } from '@hono/node-server/vercel';
 import { defaultStorage, type Storage } from './storage.js';
 import { validarOverride, validarTudo, type AllEdits, type TextOverride } from './types.js';
 
@@ -125,6 +126,6 @@ const requireTokenForWrites: MiddlewareHandler = async (c, next) => {
   return bearerAuth({ token })(c, next);
 };
 
-// A Vercel carrega este arquivo diretamente como função serverless. O handler
-// padrão precisa ser uma função, não a instância do Hono.
-export default createApp().fetch;
+// A runtime Node da Vercel entrega req/res do Node. O adaptador os converte
+// para os objetos Web Request/Response esperados pelo Hono.
+export default handle(createApp());
