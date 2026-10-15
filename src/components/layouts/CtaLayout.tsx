@@ -16,6 +16,8 @@ export interface CtaData {
   /** endereço mostrado abaixo do botão (padrão: a própria URL, sem https://) */
   address?: string;
   screen: ScreenSpec;
+  /** QR Code opcional abaixo do notebook (imagem em public/, ex.: qrcode/bws_365.png) */
+  qr?: { src: string; name: string; title: string; caption: string };
 }
 
 const shortUrl = (u: string) => u.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -77,6 +79,29 @@ export function CtaLayout({ d }: { d: CtaData }) {
       >
         <Laptop width={860}><Screen spec={d.screen} expandAt="none" /></Laptop>
       </motion.div>
+
+      {d.qr && (
+        <motion.div
+          style={{
+            position: 'absolute', left: 1100, top: 790, width: 700, display: 'flex', alignItems: 'center', gap: 32,
+            padding: 18, borderRadius: 16, background: 'rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.14)',
+          }}
+          initial={print ? false : { opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}${d.qr.src}`}
+            alt={`QR Code ${d.qr.name}`}
+            style={{ width: 200, height: 200, borderRadius: 10, background: '#fff', display: 'block', flexShrink: 0 }}
+          />
+          <div>
+            <div style={{ fontSize: 'var(--fs-label)', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--c-lime)', marginBottom: 12 }}>{d.qr.name}</div>
+            <div style={{ fontSize: 40, lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.01em' }}>{d.qr.title}</div>
+            <div style={{ marginTop: 12, fontSize: 'var(--fs-caption)', lineHeight: 1.35, color: 'rgba(255,255,255,0.72)' }}>{d.qr.caption}</div>
+          </div>
+        </motion.div>
+      )}
     </>
   );
 }
